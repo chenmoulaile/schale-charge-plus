@@ -2,7 +2,7 @@
 
 ## 原项目 / Upstream
 
-Endfield Charge Plus is a modified derivative of the HUD project
+SCHALE Charge Plus is a modified derivative of the HUD project
 [QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge).
 本项目基于 QinAnze 的 zmd-charge 进行二次开发，保留原项目来源和署名。
 
@@ -37,7 +37,19 @@ Project: https://github.com/AvaloniaUI/Avalonia
 - License: SIL Open Font License 1.1 (OFL-1.1)
 - Project: https://github.com/rsms/inter
 
-The typeface is used unmodified by Endfield Charge Plus.
+The typeface is used unmodified by SCHALE Charge Plus.
+
+### Nunito Sans typeface
+
+`Assets/Fonts/NunitoSansHud-{Regular,Medium,SemiBold,Bold}.ttf` carry the static
+weights instanced from the upstream variable font, used as the HUD typeface
+because SchaleDB's interface is set in Nunito Sans.
+
+- Typeface: Nunito Sans
+- Copyright: 2016 The Nunito Sans Project Authors (https://github.com/Fonthausen/NunitoSans)
+- License: SIL Open Font License 1.1 (OFL-1.1) — full text in `Assets/Fonts/NunitoSans-OFL.txt`
+- Source: https://github.com/google/fonts/tree/main/ofl/nunitosans
+- Derived family name: `Nunito Sans BA` (instanced at `wght` 400/500/600/700, `wdth` 100, `opsz` 12)
 
 ### Microsoft .NET packages
 
@@ -52,7 +64,7 @@ Project: https://github.com/dotnet/runtime
 - License: Mozilla Public License 2.0 (MPL-2.0)
 - Project: https://github.com/LibreHardwareMonitor/LibreHardwareMonitor
 
-It is used for hardware sensor values that Windows does not expose through a stable generic API, such as supported CPU/GPU temperatures, clocks, voltage, power, motherboard temperature and fan sensors. If a sensor is not exposed by the machine or driver, Endfield Charge Plus leaves the related value unavailable rather than manufacturing a value.
+It is used for hardware sensor values that Windows does not expose through a stable generic API, such as supported CPU/GPU temperatures, clocks, voltage, power, motherboard temperature and fan sensors. If a sensor is not exposed by the machine or driver, SCHALE Charge Plus leaves the related value unavailable rather than manufacturing a value.
 
 LibreHardwareMonitor itself includes additional third-party components under their own terms; see the upstream project's third-party notices for those transitive components.
 

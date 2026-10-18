@@ -1,8 +1,8 @@
 # Privacy / 隐私说明
 
-Endfield Charge Plus v0.1.0 does not implement advertising, analytics telemetry, an application account system, or an application-operated cloud backend.
+SCHALE Charge Plus v0.1.0 does not implement advertising, analytics telemetry, an application account system, or an application-operated cloud backend.
 
-Endfield Charge Plus v0.1.0 本身不包含广告、分析遥测、应用账户系统，也没有由本项目运营的云端后端服务。
+SCHALE Charge Plus v0.1.0 本身不包含广告、分析遥测、应用账户系统，也没有由本项目运营的云端后端服务。
 
 ## Local data / 本地数据
 
@@ -14,9 +14,9 @@ A configured DeepSeek API key is protected with Windows DPAPI using the current-
 
 配置的 DeepSeek API Key 在写入设置前会使用 Windows DPAPI 的当前用户范围进行保护；导出的配置中保存的是受保护值而不是明文 Key。该受保护值换到其他 Windows 用户或其他 Windows 安装后可能无法解密。
 
-When a selected variable needs it, the application may read local Windows/device state such as hardware and sensor information, battery status, network-interface data (including local IP/MAC/SSID when exposed by Windows), host/user names, process statistics/names, security/update status, and clipboard metadata or text. These values are used locally for HUD variables and are not uploaded by Endfield Charge Plus through its built-in update, public-IP, or DeepSeek balance requests.
+When a selected variable needs it, the application may read local Windows/device state such as hardware and sensor information, battery status, network-interface data (including local IP/MAC/SSID when exposed by Windows), host/user names, process statistics/names, security/update status, and clipboard metadata or text. These values are used locally for HUD variables and are not uploaded by SCHALE Charge Plus through its built-in update, public-IP, or DeepSeek balance requests.
 
-当所选变量需要时，应用可能读取本机 Windows / 设备状态，例如硬件与传感器、电池状态、网络接口信息（包括 Windows 能提供时的本地 IP / MAC / SSID）、主机名/用户名、进程名称与统计、安全/更新状态，以及剪贴板的类型、尺寸、文件数量或文本。这些信息用于本地 HUD 变量，Endfield Charge Plus 不会通过内置的更新检查、公网 IP 查询或 DeepSeek 余额请求上传这些本地变量值。
+当所选变量需要时，应用可能读取本机 Windows / 设备状态，例如硬件与传感器、电池状态、网络接口信息（包括 Windows 能提供时的本地 IP / MAC / SSID）、主机名/用户名、进程名称与统计、安全/更新状态，以及剪贴板的类型、尺寸、文件数量或文本。这些信息用于本地 HUD 变量，SCHALE Charge Plus 不会通过内置的更新检查、公网 IP 查询或 DeepSeek 余额请求上传这些本地变量值。
 
 Custom HTTP/JSON request headers are stored exactly as the user configures them. For secrets, use the supported `${env:VARIABLE_NAME}` form so the saved/exported configuration stores the environment-variable reference instead of the secret itself. If a secret is typed directly into a custom header, that literal value will also be present in settings and exported configuration.
 

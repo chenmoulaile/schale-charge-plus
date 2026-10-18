@@ -1,141 +1,172 @@
-# Endfield Charge Plus · Endfield-style Status HUD+
+# SCHALE Charge Plus · Blue Archive-style Status HUD
 
-See this repository’s [Releases](https://github.com/GlacierGlimmer/zmd-charge-plus/releases) for current downloads and per-version changes. This README covers installation and general usage.
+> A desktop status HUD redrawn in the visual language of *Blue Archive*: deep-grey plate, signature cyan, character halos.
+> Eight switchable character skins. The halo shape belongs to the character, its colour follows the outfit.
 
-Multiple HUDs, custom fonts and sampling intervals, persistent-click profile cycling, real FPS, World clock and grouped built-ins; see Settings and the [change log](docs/release-notes.md).
+[简体中文](README.md) · **English**　｜　**Windows 10 / 11 · x64 / x86 / ARM64**
 
-[简体中文](README.md) · **English**　｜　**Windows 10 / 11 · Linux x64 · macOS 13+**
+![All eight themes](docs/screenshots/themes-all.png)
 
-> **More than a battery notification: bring the information you care about to the top of your screen.**
+---
 
-Endfield Charge Plus (**ECP**) is a desktop status HUD developed as a modification and extension of [QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge). It builds on the original Endfield-inspired battery animation with persistent or on-demand monitoring, customizable profiles, system metrics, DeepSeek API information, and your own HTTP/JSON sources.
+## What this is
 
-**[⬇️ Windows: Microsoft Store (recommended)](https://apps.microsoft.com/detail/9p3pld3lx7w6)** · **[Windows downloads](https://github.com/GlacierGlimmer/zmd-charge-plus/releases)** · **[macOS downloads](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos/releases)** · **[Linux downloads](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux/releases)** · **[Android releases](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android/releases)** · **[🌐 Website](https://zmd-bar.x-neko.com/)** · **[Upstream project](https://github.com/QinAnze/zmd-charge)**
+SCHALE Charge Plus (**ECP**) is a status HUD that lives on your desktop. CPU, GPU, memory, disk, network, time, DeepSeek API balance and your own HTTP/JSON endpoints can all be composed into a single capsule across the top of the screen — summoned on demand, dismissed on demand, or cycled automatically.
 
-> Unofficial community derivative. Not affiliated with, authorized by, or endorsed by the developers or publishers of Arknights: Endfield.
+It descends from [QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge) via [GlacierGlimmer/zmd-charge-plus](https://github.com/GlacierGlimmer/zmd-charge-plus). **This repository does exactly one thing: it redraws the entire interface in *Blue Archive*'s style and adds a per-character-outfit theme layer.** Features, the variable library, the profile system and the animation timelines are all inherited unchanged.
 
-This repository maintains the Windows edition. **[Endfield Charge Plus For Linux](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux)** is maintained separately with APT installation and four package formats. **[Endfield Charge Plus For MacOS](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos)** is also maintained in a separate repository and currently provides DMGs for both Apple Silicon and Intel Macs.
+---
 
-> ⚠️ **The macOS edition has not yet been tested on physical Mac hardware.** It has passed automated CI checks in macOS environments for building, native data collection, UI, DMG mounting and launch, but hardware/model-specific compatibility issues may still exist.
+## Themes
 
-## ✨ What Plus adds
+Settings → **Display & Position → Character theme**. Switching previews live; hitting **Save and apply** persists it.
 
-The comparison and feature details below describe the Windows edition. Linux and macOS behavior and available variables are adapted to each platform and device; see their installation sections and separate repositories.
-
-| Area | Original focus | Endfield Charge Plus |
+| Theme | Palette source | Halo shape |
 | :-- | :-- | :-- |
-| Content | Battery and power events | System metrics, time, network probing, API and custom-data HUDs |
-| Visibility | Brief event-triggered notification | **On-demand or persistent HUD**, optionally topmost or on the desktop layer |
-| Interaction | Power connection changes | Keeps battery notifications; moving the pointer to the top center of the selected monitor can show the active profile |
-| Customization | Battery display and animation | Profiles, variable templates, progress ring, left/right icons, color rules and animation modes |
-| Multiple profiles | Battery-focused HUD | Built-in and custom profiles with an ordered automatic cycle queue |
-| Data | Local battery information | **Built-in variables, 17 dynamic per-drive variable templates and detected fan sensors**, plus HTTP/JSON mapping |
+| SCHALE (default) | `#212529` plate + `#00D9FA` cyan | plain flattened ring |
+| Sorasaki Hina | sampled from key art: halo magenta `#E448F6`, deep purple `#3C0048` | spiked crown |
+| Hina (Swimsuit) | `#1EAAF0` sky blue + `#D2E6F0` pale blue + `#F0B4D2` pink | spiked crown |
+| Hina (Dress) | `#E47EEA` pale violet + `#463C78` indigo | spiked crown |
+| Hina (Nightwear) | `#FCEA96` cream + `#F0B4C8` pink + `#241A2E` dark | spiked crown |
+| Ryuge Kisaki | `#1E244E` deep indigo + `#66AECC` teal + `#CCD2D2` silver | brushed cloud-scroll crescent |
+| Kisaki (Swimsuit) | `#464664` blue-violet + `#DCAAAA` coral + `#EAEAF0` near-white | brushed cloud-scroll crescent |
+| Kisaki (Kindergarten) | `#FCEA96` sun hat + `#FABEC8` sakura + `#E4A854` amber | brushed cloud-scroll crescent |
 
-## ⬇️ Download & first run
+These are not one hue rotated seven times. The key colours of each outfit were sampled from pixel statistics of that outfit's official key art — saturated-colour mode plus highlight and shadow samples. That is why the swimsuit reads blue and the nightwear reads cream, instead of three darker shades of purple.
 
-### Windows: Microsoft Store / winget (recommended)
+The halo shape is bound to the character, not the outfit: all four Hina forms share the spiked crown, all three Kisaki forms share the cloud-scroll crescent. That is how the source material defines them, and it is the single symbol that lets you identify the character at a glance.
 
-ECP is now available on Microsoft Store. [**Get Endfield Charge Plus from Microsoft Store**](https://apps.microsoft.com/detail/9p3pld3lx7w6), follow the installation prompts, and launch the app when installation finishes.
+![All eight halos side by side](docs/screenshots/halos.png)
 
-You can also install it with **winget**. Paste and run this command in PowerShell or Windows Terminal:
+---
 
-```powershell
-winget install --id 9P3PLD3LX7W6 --source msstore --exact
-```
+## What changed visually
 
-This installs the same app from the Microsoft Store source. Review any prompts shown on first use. If `winget` is not recognized, install or update App Installer from Microsoft Store, or use the Store link above.
+- **Palette**: taken from SchaleDB's official dark-theme design tokens — `#212529` plate, `#00D9FA` signature cyan, `#006BFF` accent — replacing the original yellow-green Endfield scheme.
+- **Halo**: a flattened glowing ring sits above the HUD's icon plate, three stacked strokes giving it its bloom. Both the full and the simple animation timelines light it.
+- **Capsule**: `LinearGradientBrush` deep-sea gradient with a cyan edge and outer glow, recoloured live by the active theme.
+- **Icons**: the application and tray icons are redrawn as a cyan halo over a dark character plate. The ICO covers 16 / 20 / 24 / 32 / 40 / 48 / 64 / 128 / 256 px — the aperture is still legible at the smallest size.
+- **Typeface**: HUD numerals and titles use **Nunito Sans** (SchaleDB's UI face), instanced from the upstream variable font into four static weights (400/500/600/700). CJK falls back to Microsoft YaHei / PingFang.
+- **Controls**: the Avalonia Fluent `SystemControl*` / `ComboBox*` / `ListBox*` resource keys are overridden, so dropdowns, lists and buttons no longer leak the default warm-grey dark surfaces. The language picker's list background needed a separate fix.
+- **Identity**: the display name is SCHALE Charge Plus throughout; the default tagline reads `/// SCHALE MONITOR`.
 
-### Windows: GitHub portable downloads
+The assembly name, root namespace, `avares://` resource paths and executable filename all remain `EndfieldChargePlus`. Renaming them would break existing configs, startup entries and update channels for no visible gain.
 
-For a version that needs no installation, get the Portable ZIP for your device from [**GitHub Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus/releases). Extract it to a folder and run `EndfieldChargePlus.exe`. No installer or separately installed .NET runtime is required.
+![Before and after](docs/screenshots/compare-hud.png)
 
-**Getting started:**
+---
 
-1. Install and launch ECP through Microsoft Store or winget. For the GitHub portable version, extract the ZIP to a permanent folder and run `EndfieldChargePlus.exe`. ECP stays available in the system tray.
-2. Open **Settings** from the tray. Choose the display, position and visibility mode under **Display & Position**.
-3. Under **HUD Content & Data**, select a built-in profile or make your own, then use **Preview**.
-4. Click **Save & Apply**. Settings persist across restarts; enable Windows auto-start if you want it.
+## Download and first run
 
-The default profile is **System – Memory**. On first launch, Windows UI language selects Simplified Chinese for Chinese locales and English for others; you can switch manually.
+Grab the portable ZIP for your architecture from this repository's [Releases](https://github.com/chenmoulaile/schale-charge-plus/releases):
 
-### Linux: independent Releases
+| Architecture | File | For |
+| :-- | :-- | :-- |
+| x64 | `SCHALE-Charge-Plus-v0.1.2-ba-win-x64-portable.zip` | nearly every Windows 10 / 11 machine |
+| x86 | `SCHALE-Charge-Plus-v0.1.2-ba-win-x86-portable.zip` | 32-bit systems |
+| ARM64 | `SCHALE-Charge-Plus-v0.1.2-ba-win-arm64-portable.zip` | Windows on ARM |
 
-**Endfield Charge Plus For Linux** is maintained and released in the [Linux repository](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux).
-
-Open [**Linux Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux/releases) for available versions, packages and checksums. APT installation, package selection, dependencies and validation details are maintained in the [Linux README](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux#readme).
-
-### macOS: independent Releases
-
-**Endfield Charge Plus For MacOS** is maintained and released in the [macOS repository](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos).
-
-Open [**macOS Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos/releases) for available versions, Apple Silicon / Intel DMGs and checksums. Installation, signing and compatibility details are maintained in the [macOS README](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos#readme).
-
-### Android: independent repository
-
-The [**Endfield Charge Plus For Android** repository](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android) has been created. Available builds and release status will be listed on [**Android Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android/releases).
-
-Other platform versions are distributed by their respective repositories; their latest versions are not tied to the Windows release tag in this repository.
-
-## 🎛️ Features (Windows)
-
-| Feature | What it does |
-| :-- | :-- |
-| **On-demand / persistent** | Event/pointer-triggered display that retracts automatically, or an always-visible live HUD. |
-| **Topmost / desktop layer** | Choose topmost or non-topmost desktop layer in persistent mode; the HUD is click-through. |
-| **Power events** | On AC connection or disconnection, the battery profile takes priority with full or simple animation respectively. |
-| **Pointer hot zone** | Move to the top center of the selected monitor to show the active non-battery profile while not in persistent mode. |
-| **Display & layout** | Choose monitor, nine position presets or custom X/Y, scaling and opacity. |
-| **Profiles & animation** | Built-in battery, CPU, GPU, memory, disk, network, time and DeepSeek profiles; create, edit, save and preview profiles with full/simple animations. |
-| **Automatic cycle** | Arrange a cycle queue with add/remove/reorder controls, interval and transition animation settings. |
-| **Variable Library** | Built-in variables, 17 types of per-drive templates and individual detected fan sensors for hardware, system, network, process, security and developer tools. |
-| **Flexible layouts** | Variable-driven title, numbers, progress ring and icons; formatting, expressions and conditional color rules. |
-| **Network probe** | Probe IPv4/IPv6/hostnames over ICMP, TCP or UDP; display latency and loss. |
-| **DeepSeek API** | With your own API key: balance, peak/off-peak, progress and countdown. Beijing Time drives the schedule; local-time switch variables are available. |
-| **HTTP / JSON** | Configure an endpoint, headers, refresh interval and JSON field mappings to display your own data. |
-| **Everyday controls** | Chinese/English UI, tray, auto-start, import/export/backup, logs and GitHub update checks. |
-
-### 🧩 Variables in action
-
-Variables can populate templates and drive computed values or the progress ring:
-
-```text
-{cpu.usage|0}                 CPU utilization
-{memory.used_bytes|gb:1}     Used memory (GB)
-{network.download_bps|speed}  Network download speed
-{deepseek.balance|0.00}      DeepSeek API balance
-```
-
-Built-in keys have corresponding runtime collection/calculation code, but actual availability depends on hardware, drivers, permissions, relevant services and external tools. Missing readings are shown as unavailable rather than fabricated. See the in-app Variable Library for the full key list, formats and explanations.
-
-DeepSeek requires your API key; custom HTTP/JSON requests target endpoints you configure. See [Privacy](PRIVACY.md) for details on API keys and request headers.
-
-## 💻 Windows requirements & build
-
-- **OS:** Windows 10 / 11, x64, x86 and ARM64.
-- **Portable packages:** each ZIP contains only a self-contained `EndfieldChargePlus.exe`; no separately installed .NET runtime. Embedded native dependencies are extracted automatically on first launch.
-- **Building:** Windows and the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
+Extract and run `EndfieldChargePlus.exe`. No installer, no separately installed .NET runtime. `SHA256SUMS.txt` ships alongside for verification:
 
 ```powershell
-# Build from source
+Get-FileHash .\SCHALE-Charge-Plus-v0.1.2-ba-win-x64-portable.zip -Algorithm SHA256
+```
+
+**First run:**
+
+1. Launch `EndfieldChargePlus.exe` — it parks itself in the system tray.
+2. Tray menu → **Settings**.
+3. Under "Display & Position", pick the monitor, the HUD position, the display mode — and a character theme while you are there.
+4. Under "HUD content", choose a built-in profile or build your own, then hit **Preview**.
+5. Hit **Save and apply**. Settings persist across restarts.
+
+The first launch uses the "System - Memory" profile. The UI language follows your system locale: Chinese locales get Simplified Chinese, everything else gets English.
+
+> The Microsoft Store, Linux, macOS and Android editions are published from the upstream repositories and are not distributed here. This repository ships Windows portable builds only.
+
+---
+
+## Building it yourself
+
+Windows plus the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
+
+```powershell
+# compile
 dotnet build EndfieldChargePlus.csproj -c Release
 
-# Example: publish a self-contained x64 executable
+# packaged self-contained single file for x64
 ./scripts/package-windows.ps1 -Runtime win-x64
 ```
 
-Replace `win-x64` with `win-x86` or `win-arm64` for the other architectures. Every build produces one EXE. Frame capture selects the embedded x64 or ARM64 collector according to the Windows OS architecture.
+Swap `win-x64` for `win-x86` or `win-arm64` for the other architectures. Output lands in `publish/<runtime>-portable/` as a single EXE.
 
+The FPS collector picks the bundled x64 or ARM64 helper to match the system architecture.
 
-Microsoft Store submission bundles contain **x64 and x86 (32-bit)** only. ARM64 is distributed as a separate single-file EXE / portable ZIP. Publish the x64/x86 executables first, then run:
+---
 
-```powershell
-./scripts/package-store.ps1
+## Features
+
+Identical to upstream. Only the parts you will actually touch are listed here.
+
+| Feature | Notes |
+| :-- | :-- |
+| **Two display modes** | With "always visible" off, the HUD appears on an event or pointer summon and retracts itself; with it on, the current profile stays on screen |
+| **Topmost / desktop layer** | A persistent HUD can stay topmost or sit on the desktop layer; it is click-through, so it never blocks your work |
+| **Pointer summon** | Move the pointer to the top centre of the target monitor to show the active non-battery profile |
+| **Multi-monitor and placement** | Choose the monitor, a nine-cell preset or custom X/Y, with adjustable scale and opacity |
+| **Profiles and animation** | Built-in battery / CPU / GPU / memory / disk / network / time / DeepSeek profiles; full and simple animation modes |
+| **Auto cycle** | Loop through a custom queue with its own interval and transition animation |
+| **Variable library** | Built-in variables, 17 per-drive templates generated from the drives actually present, and fan variables built from the sensors actually detected |
+| **Composition** | Title, primary and secondary values, percentage ring and both icons are all template-driven, with formatting, expressions and conditional colour rules |
+| **Network probe** | Probe an IPv4 address, IPv6 address or hostname on a chosen port over ICMP, TCP or UDP |
+| **DeepSeek API** | Supply your own key to show balance, peak/off-peak state, period progress and countdown |
+| **HTTP / JSON sources** | Configure URL, headers, refresh interval and field mapping to pipe your own endpoint into the HUD |
+
+```text
+{cpu.usage|0}                CPU usage
+{memory.used_bytes|gb:1}     memory used (GB)
+{network.download_bps|speed} network download speed
+{deepseek.balance|0.00}      DeepSeek API balance
 ```
 
-The script uses Windows SDK MakeAppx to validate and export MSIXBUNDLE / MSIXUPLOAD, with a fresh staging directory for each build so older ARM64 packages cannot enter the bundle. The Store package version is separate from the displayed product version; version changes still require an explicit user request.
+The numbers are not simulated. When a source is unreachable the HUD reports it as unavailable rather than fabricating a zero. The full key list lives in the in-app variable library.
 
-## 📄 Origin & license
+---
 
-ECP is a modified derivative of **[QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge)**. Thanks to **QinAnze** for the original open-source work. New ECP contributions are under [MIT License](LICENSE); upstream code/assets retain applicable terms. See [NOTICE.md](NOTICE.md) and [PRIVACY.md](PRIVACY.md).
+## Verification
 
-© 2026 GlacierGlimmer_冰川雪貓
+Before packaging, the repository's own regression suites were run on this machine (Windows 10.0.19041, .NET SDK 8.0.426):
+
+| Suite | Result |
+| :-- | :-- |
+| `--appearance` | **PASS** — 33 appearance and language checks |
+| `--layers` | **PASS** — 104 multi-HUD layer checks |
+| `--localization` | resource layer **PASS** — 21 locales × 1728 messages; the GUI layer aborts on the `ar-SA` `SaveBtn` visibility assertion |
+| `--rendering` | aborts on the transparent-pixel assertion |
+
+The latter two are not regressions from this work. Running the same suites on the untouched upstream baseline `GlacierGlimmer/zmd-charge-plus`, on the same machine, aborts at exactly the same points (`--localization` at `ar-SA SaveBtn`, `--rendering` at `Real desktop pixels outside both HUD capsules stay transparent`). Those assertions depend on the specific desktop session and DPI environment, and do not hold here. This is stated plainly rather than listing only the green rows.
+
+All three architecture builds were launched for real; the log records `SCHALE Charge Plus process started. Version=0.1.2`.
+
+---
+
+## Credits, licence and disclaimer
+
+- Upstream HUD: [QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge), by **QinAnze**.
+- Derivative baseline: [GlacierGlimmer/zmd-charge-plus](https://github.com/GlacierGlimmer/zmd-charge-plus), by **GlacierGlimmer**.
+- The code and theme work added here are released under the [MIT License](LICENSE). Upstream attribution is preserved in full in [NOTICE.md](NOTICE.md).
+- **Nunito Sans** is licensed under the SIL Open Font License 1.1; the full text is at `Assets/Fonts/NunitoSans-OFL.txt`.
+- **Blue Archive** characters, names and artwork belong to NEXON Games and its publishers. This is an unofficial community project with no affiliation, authorisation or endorsement. The repository contains no original game artwork — only colour values sampled from it and halo geometry drawn from scratch.
+
+Data handling is described in [PRIVACY.md](PRIVACY.md).
+
+---
+
+## Finding upstream
+
+To return to the unthemed original, or to get Linux / macOS / Android builds:
+
+- Unthemed Windows original: [GlacierGlimmer/zmd-charge-plus](https://github.com/GlacierGlimmer/zmd-charge-plus)
+- Linux: [zmd-charge-plus-for-linux](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux)
+- macOS: [zmd-charge-plus-for-macos](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos)
+- Android: [zmd-charge-plus-for-android](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android)

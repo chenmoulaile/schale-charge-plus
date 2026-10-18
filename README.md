@@ -1,141 +1,172 @@
-# Endfield Charge Plus · 终末地风格状态栏HUD+
+# SCHALE Charge Plus · 蔚蓝档案风格状态栏 HUD
 
-下载与每版更新说明请查看本仓库 [Releases](https://github.com/GlacierGlimmer/zmd-charge-plus/releases)。README 保留通用安装和使用说明。
+> 把桌面状态栏 HUD 换成《蔚蓝档案》的视觉语言：深灰底盘、标志性青色、角色光环。
+> 内置 8 套可切换角色皮肤，光环形状跟随角色、配色跟随服装。
 
-多实例 HUD、自定义字体与采样间隔、常驻点击轮播、实际 FPS、世界时钟及按类别排列的内置方案；详见软件设置与 [更新说明](docs/release-notes.md)。
+**简体中文** · [English](README.en.md)　｜　**Windows 10 / 11 · x64 / x86 / ARM64**
 
-**简体中文** · [English](README.en.md)　｜　**Windows 10 / 11 · Linux x64 · macOS 13+**
+![八套主题一览](docs/screenshots/themes-all.png)
 
-> **不止于电量提示，让需要的信息以你喜欢的方式出现在屏幕上。**
+---
 
-Endfield Charge Plus（**ECP**）是基于 [QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge) 二次开发的桌面状态栏 HUD。它延续原项目的终末地风格电量动画，并将原本的电源提示扩展为可常驻、可唤出、可轮播的多数据 HUD：从 CPU / GPU 和网络状态，到 DeepSeek API 与自定义 HTTP/JSON 数据，都能组合成自己的显示方案。
+## 这是什么
 
-**[⬇️ Windows：Microsoft Store（推荐）](https://apps.microsoft.com/detail/9p3pld3lx7w6)** · **[Windows 下载](https://github.com/GlacierGlimmer/zmd-charge-plus/releases)** · **[macOS 下载](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos/releases)** · **[Linux 下载](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux/releases)** · **[Android 发布](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android/releases)** · **[🌐 项目网站](https://zmd-bar.x-neko.com/)** · **[原项目](https://github.com/QinAnze/zmd-charge)**
+SCHALE Charge Plus（**ECP**）是一个常驻桌面的状态栏 HUD：CPU、GPU、内存、磁盘、网络、时间、DeepSeek API 余额、自定义 HTTP/JSON 数据，都能组合成一条横贯屏幕顶部的胶囊，随时唤出、随时收起、按队列自动轮播。
 
-> 本项目为非官方社区二次开发作品，与《明日方舟：终末地》开发方及发行方无隶属、授权或背书关系。
+它由 [QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge) 经 [GlacierGlimmer/zmd-charge-plus](https://github.com/GlacierGlimmer/zmd-charge-plus) 二次开发而来。**本仓库只做一件事：把整个界面重绘成《蔚蓝档案》的风格，并加上按角色形态切换的主题层。** 功能、变量库、方案系统、动画时间线全部沿用上游，没有删改。
 
-Windows 版在本仓库维护；Linux 版 **[Endfield Charge Plus For Linux](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux)** 提供 APT 命令安装与四种独立安装包；macOS 版 **[Endfield Charge Plus For MacOS](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos)** 在独立仓库维护，目前提供 Apple Silicon 与 Intel 两种 DMG。使用方法见下方下载章节。
+---
 
-> ⚠️ **macOS 版本目前尚未进行真实 Mac 实机测试。** 当前仅完成 CI macOS 环境中的构建、原生采集、界面、DMG 挂载与启动等自动化验证，因此可能仍存在与具体机型、macOS 版本、刘海屏、多显示器或系统权限相关的兼容性问题。
+## 主题
 
-## ✨ Plus 版带来了什么？
+设置 → **显示与位置 → 角色主题**。切换即预览，点「保存并应用」后持久化。
 
-下表与后文功能详解以 Windows 版为准；Linux 与 macOS 版本会按平台及设备能力调整可用变量和行为，详见各自安装章节与独立仓库说明。
-
-| 方向 | 原项目的核心体验 | Endfield Charge Plus 的扩展 |
+| 主题 | 配色来源 | 光环形状 |
 | :-- | :-- | :-- |
-| 显示内容 | 以电源插拔和电池状态为中心 | 扩展为系统监控、时间、网络探测、API 与自定义数据 HUD |
-| 显示方式 | 电源事件触发的短暂弹出 | **按需唤出 / 持续显示**；持续显示可选置顶或桌面层（不置顶） |
-| 唤出交互 | 电源状态变化 | 保留电源插拔提示；鼠标移至目标屏幕顶部中央，还可唤出当前方案 |
-| 自定义 | 电量主题与动画 | 方案管理、变量模板、进度环、左右图标、颜色规则和两种动画模式 |
-| 多方案 | 以电池 HUD 为主 | 内置多类方案、自定义方案，以及可排序的自动轮播队列 |
-| 扩展能力 | 本机电量信息 | **内置变量、17 类动态磁盘变量模板和实际探测到的风扇变量**，并可接入 HTTP/JSON 数据源 |
+| 夏莱（默认）SCHALE | `#212529` 底盘 + `#00D9FA` 青 | 素扁椭圆环 |
+| 空崎日奈 Hina | 立绘采样：光环品红 `#E448F6`、深紫 `#3C0048` | 尖刺冠冕 |
+| 日奈（泳装）Swimsuit | `#1EAAF0` 天蓝 + `#D2E6F0` 淡蓝 + `#F0B4D2` 粉 | 尖刺冠冕 |
+| 日奈（礼服）Dress | `#E47EEA` 淡紫粉 + `#463C78` 靛紫 | 尖刺冠冕 |
+| 日奈（睡衣）Nightwear | `#FCEA96` 奶黄 + `#F0B4C8` 粉 + `#241A2E` 暗 | 尖刺冠冕 |
+| 龙华妃咲 Kisaki | `#1E244E` 深靛 + `#66AECC` 青蓝 + `#CCD2D2` 银白 | 云气卷曲月牙 |
+| 妃咲（泳装）Swimsuit | `#464664` 蓝紫 + `#DCAAAA` 珊瑚 + `#EAEAF0` 近白 | 云气卷曲月牙 |
+| 妃咲（妃妃）Kindergarten | `#FCEA96` 小黄帽 + `#FABEC8` 樱粉 + `#E4A854` 橙 | 云气卷曲月牙 |
 
-## ⬇️ 下载与使用
+配色不是套同一色相旋转出来的。7 套角色皮肤的关键色都取自对应形态官方立绘的像素统计（高饱和色众数 + 高光/暗部采样），所以泳装是泳装的蓝、睡衣是睡衣的奶黄，而不是把紫色调暗三次。
 
-### Windows：Microsoft Store / winget（推荐）
+光环形状绑角色，不绑服装——日奈四个形态共用尖刺冠冕，妃咲三个形态共用云气月牙。这是原作里的设定，也是肉眼一眼能区分角色的那个符号。
 
-ECP 已上架微软商店。前往 [**Microsoft Store 获取 Endfield Charge Plus**](https://apps.microsoft.com/detail/9p3pld3lx7w6)，按页面提示安装，安装完成后启动应用即可。
+![八套光环并列](docs/screenshots/halos.png)
 
-也可以使用 **winget**，在 PowerShell 或 Windows 终端中粘贴并运行：
+---
 
-```powershell
-winget install --id 9P3PLD3LX7W6 --source msstore --exact
-```
+## 视觉改动清单
 
-该命令通过 Microsoft Store 源安装同一个应用；首次使用时按提示确认即可。如果系统找不到 `winget`，请安装或更新微软商店中的「应用安装程序」，也可以直接使用上方商店链接。
+- **配色**：以 SchaleDB 官方暗色主题的设计令牌为准。`#212529` 深灰底、`#00D9FA` 标志青、`#006BFF` 蓝强调，替换原版终末地黄绿体系。
+- **光环**：HUD 左侧图标盘上方加一圈扁椭圆光环，三层描边叠出发光感。完整动画与简洁动画两条时间线都会点亮它。
+- **胶囊**：`LinearGradientBrush` 深海蓝渐变 + 青色描边 + 外发光，随主题实时重新着色。
+- **图标**：应用图标与托盘图标重绘为「青色光环 + 深色角色盘」。ICO 覆盖 16 / 20 / 24 / 32 / 40 / 48 / 64 / 128 / 256 px 九档，最小档也能看出环孔。
+- **字体**：HUD 数字与标题改用 **Nunito Sans**（SchaleDB 的界面字体），从上游可变字体实例化成 400/500/600/700 四个静态字重，中文回退到系统雅黑 / 苹方。
+- **控件**：覆盖了 Avalonia Fluent 的 `SystemControl*` / `ComboBox*` / `ListBox*` 资源键，下拉框、列表、按钮不再露出默认暗色暖灰。语言选择窗的列表底色单独修过。
+- **品牌**：显示名统一为 SCHALE Charge Plus；默认标签文案 `/// SCHALE MONITOR`。
 
-### Windows：GitHub 便携版
+程序集名、命名空间、`avares://` 资源路径、可执行文件名都保持 `EndfieldChargePlus` 不变——这样旧的配置、开机启动项和更新通道不会因为改名而断掉。
 
-需要免安装版本时，前往 [**GitHub Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus/releases) 下载适合你设备的便携版 ZIP。解压后直接运行其中的 `EndfieldChargePlus.exe`，无需安装，也无需另装 .NET 运行时。
+![改动前后对比](docs/screenshots/compare-hud.png)
 
-**首次使用只需几步：**
+---
 
-1. 通过 Microsoft Store 或 winget 安装并启动 ECP；使用 GitHub 便携版时，将 ZIP 解压到固定目录后运行 `EndfieldChargePlus.exe`。程序通过系统托盘驻留。
-2. 从托盘菜单打开**设置**，在「显示与位置」中选择目标显示器、HUD 位置和显示方式。
-3. 进入「HUD 内容与数据」，选择内置方案，或创建自己的 HUD；点击**预览**查看效果。
-4. 点击**保存并应用**。配置自动保存，重新启动后继续使用；可按需开启 Windows 开机启动。
+## 下载与运行
 
-默认会以**系统 - 内存**方案启动；首次界面语言跟随 Windows：中文系统使用简体中文，其他系统使用 English，也可以手动切换。
+前往本仓库 [Releases](https://github.com/chenmoulaile/schale-charge-plus/releases) 下载对应架构的便携版 ZIP：
 
-### Linux：独立仓库 Releases
+| 架构 | 文件 | 适用 |
+| :-- | :-- | :-- |
+| x64 | `SCHALE-Charge-Plus-v0.1.2-ba-win-x64-portable.zip` | 绝大多数 Windows 10 / 11 电脑 |
+| x86 | `SCHALE-Charge-Plus-v0.1.2-ba-win-x86-portable.zip` | 32 位系统 |
+| ARM64 | `SCHALE-Charge-Plus-v0.1.2-ba-win-arm64-portable.zip` | Windows on ARM |
 
-**Endfield Charge Plus For Linux** 由 [Linux 独立仓库](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux)维护和发布。
-
-前往 [**Linux Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux/releases) 查看可用版本、安装包和校验文件。APT 安装、包格式选择、依赖及验证范围以 [Linux README](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux#readme) 为准。
-
-### macOS：独立仓库 Releases
-
-**Endfield Charge Plus For MacOS** 由 [macOS 独立仓库](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos)维护和发布。
-
-前往 [**macOS Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos/releases) 查看可用版本、Apple Silicon / Intel DMG 和校验文件。安装、签名及兼容性说明以 [macOS README](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos#readme) 为准。
-
-### Android：独立仓库
-
-[**Endfield Charge Plus For Android 仓库**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android)已建立，可下载版本和发布状态以 [**Android Releases**](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android/releases) 为准。
-
-各平台的版本和安装包在各自仓库分发，不与本仓库的 Windows 发布标签绑定。
-
-## 🎛️ 功能一览（Windows）
-
-| 功能 | 说明 |
-| :-- | :-- |
-| **两种显示方式** | 关闭「一直显示」时，HUD 按事件或鼠标唤出后自动收回；开启后持续更新当前方案。 |
-| **置顶 / 桌面层** | 持续显示模式可选始终置顶或桌面层（不置顶）；HUD 支持点击穿透，不妨碍正常操作。 |
-| **电源插拔提示** | 接通 / 断开电源时优先展示电池方案，插电使用完整动画、拔电使用简洁动画。 |
-| **鼠标唤出** | 在非持续显示模式下，将鼠标移到目标屏幕顶部中央，即可临时显示当前非电池方案。 |
-| **多显示器与位置** | 指定目标显示器，选九宫格预设位置或自定义 X/Y 坐标，并调整缩放与不透明度。 |
-| **方案与动画** | 内置电池、CPU、GPU、内存、磁盘、网络、时间、DeepSeek 等方案；支持新建、另存、编辑与预览；完整 / 简洁动画可选。 |
-| **自动轮播** | 按自定义队列依次切换方案，支持添加、删除、上移、下移，另设轮播间隔与切换动画。 |
-| **高级变量库** | 内置变量、17 类按实际盘符生成的磁盘变量模板，以及按实际传感器生成的独立风扇变量；覆盖硬件、系统、网络、进程、安全和开发者工具等。 |
-| **自由组合显示** | 标题、主副数值、百分比圆环、左右图标均可按变量模板配置；支持格式化、表达式及条件颜色规则。 |
-| **网络包探测** | 指定 IPv4 / IPv6 / 域名及端口，使用 ICMP、TCP 或 UDP 探测，查看延迟、丢包等状态。 |
-| **DeepSeek API** | 配置自己的 API Key 后显示余额、当前高峰 / 低谷、时段进度与倒计时；以北京时间判定，并提供本地时区切换时间变量。 |
-| **HTTP / JSON 数据源** | 配置请求地址、Header、刷新间隔和 JSON 字段映射，把自有接口数据接入 HUD。 |
-| **日常维护** | 中英双语、托盘操作、开机启动、配置导入 / 导出 / 备份、日志和 GitHub 更新检查。 |
-
-### 🧩 变量与自定义示例
-
-变量不仅能单独显示，也可以参与模板、计算和进度显示。例如：
-
-```text
-{cpu.usage|0}                 CPU 使用率
-{memory.used_bytes|gb:1}     已用内存（GB）
-{network.download_bps|speed}  网络下载速度
-{deepseek.balance|0.00}      DeepSeek API 余额
-```
-
-**变量不等于模拟数值。** 内置变量均有对应的读取或计算实现；实际能否读到取决于设备、驱动、权限、相关服务及第三方程序。无法获取时会显示不可用信息。完整 Key、格式和说明请在软件的「变量库」中查看。
-
-DeepSeek API 需要用户自行提供 Key；HTTP/JSON 接口由用户自行配置。涉及密钥与自定义 Header 时，请参阅 [隐私说明](PRIVACY.md)。
-
-## 💻 Windows 运行要求与源码构建
-
-- **系统：** Windows 10 / 11，支持 x64、x86 和 ARM64。
-- **Portable 包：** ZIP 内只有自包含的 `EndfieldChargePlus.exe`，不需要另行安装 .NET。首次启动时自动解压内置原生依赖。
-- **自行编译：** Windows 环境及 [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)。
+解压后直接运行 `EndfieldChargePlus.exe`，无需安装，也无需另装 .NET 运行时。下载页附带 `SHA256SUMS.txt`，可用它校验：
 
 ```powershell
-# 编译源码
+Get-FileHash .\SCHALE-Charge-Plus-v0.1.2-ba-win-x64-portable.zip -Algorithm SHA256
+```
+
+**首次使用：**
+
+1. 运行 `EndfieldChargePlus.exe`，程序驻留系统托盘。
+2. 托盘菜单 → **设置**。
+3. 「显示与位置」里选目标显示器、HUD 位置、显示方式，顺便挑一个角色主题。
+4. 「HUD 显示内容」里选内置方案或新建自己的 HUD，点**预览**看效果。
+5. 点**保存并应用**。配置自动保存，重启后继续生效。
+
+首次启动默认使用「系统 - 内存」方案；界面语言跟随系统，中文系统走简体中文，其他走 English。
+
+> 微软商店、Linux、macOS、Android 的发行版由上游仓库维护，不在本仓库分发。本仓库只出 Windows 便携版。
+
+---
+
+## 自行编译
+
+需要 Windows 与 [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)。
+
+```powershell
+# 编译
 dotnet build EndfieldChargePlus.csproj -c Release
 
-# 示例：发布 x64 自包含单文件
+# 打包 x64 自包含单文件
 ./scripts/package-windows.ps1 -Runtime win-x64
 ```
 
-构建 x86 或 ARM64 时将 `win-x64` 换为 `win-x86` 或 `win-arm64`。所有架构均输出单个 EXE；帧率采集器根据 Windows 系统架构选择内置 x64 或 ARM64 版本。
+把 `win-x64` 换成 `win-x86` 或 `win-arm64` 即可打另外两种架构。产物落在 `publish/<runtime>-portable/`，目录里只有单个 EXE。
 
+帧率采集器按系统架构自动选择内置的 x64 或 ARM64 版本。
 
-微软商店提交包固定包含 **x64 与 x86（32 位）**，不包含 ARM64。ARM64 作为独立单文件 EXE / portable ZIP 提供。先发布 x64/x86 单文件，再运行：
+---
 
-```powershell
-./scripts/package-store.ps1
+## 功能一览
+
+功能与上游完全一致，这里只列会用到的那部分。
+
+| 功能 | 说明 |
+| :-- | :-- |
+| **两种显示方式** | 关闭「一直显示」时按事件或鼠标唤出后自动收回；开启后持续更新当前方案 |
+| **置顶 / 桌面层** | 持续显示可选始终置顶或桌面层（不置顶）；HUD 点击穿透，不挡操作 |
+| **鼠标唤出** | 鼠标移到目标屏幕顶部中央，临时显示当前非电池方案 |
+| **多显示器与位置** | 指定显示器，九宫格预设或自定义 X/Y，可调缩放与不透明度 |
+| **方案与动画** | 内置电池 / CPU / GPU / 内存 / 磁盘 / 网络 / 时间 / DeepSeek 等方案；完整与简洁两种动画 |
+| **自动轮播** | 按自定义队列循环切换，另设轮播间隔与切换动画 |
+| **变量库** | 内置变量、17 类按实际盘符生成的磁盘模板、按实际传感器生成的风扇变量 |
+| **自由组合** | 标题、主副数值、百分比圆环、左右图标均可按变量模板配置；支持格式化、表达式、条件颜色规则 |
+| **网络包探测** | 指定 IPv4 / IPv6 / 域名及端口，用 ICMP、TCP 或 UDP 探测 |
+| **DeepSeek API** | 填自己的 Key，显示余额、高峰 / 低谷、时段进度与倒计时 |
+| **HTTP / JSON 数据源** | 配置地址、Header、刷新间隔与字段映射，把自有接口接进 HUD |
+
+```text
+{cpu.usage|0}                 CPU 使用率
+{memory.used_bytes|gb:1}      已用内存（GB）
+{network.download_bps|speed}  网络下载速度
+{deepseek.balance|0.00}       DeepSeek API 余额
 ```
 
-该脚本使用 Windows SDK MakeAppx 校验并导出 MSIXBUNDLE / MSIXUPLOAD；每次使用全新暂存目录，避免旧 ARM64 包混入。商店包版本参数独立于产品显示版本，版本修改仍需用户明确要求。
+变量不是模拟数值，读不到时会显示不可用，不会伪造一个 0。完整 Key 与说明在软件内「变量库」查看。
 
-## 📄 来源与许可
+---
 
-ECP 基于 **[QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge)** 修改与扩展。感谢原作者 **QinAnze** 的开源工作；原项目的来源和许可在此明确保留。本项目新增贡献采用 [MIT License](LICENSE)。详情参见 [NOTICE.md](NOTICE.md)，数据处理说明参见 [PRIVACY.md](PRIVACY.md)。
+## 验证情况
 
-© 2026 GlacierGlimmer_冰川雪貓
+发布前在本机（Windows 10.0.19041 / .NET SDK 8.0.426）跑过仓库自带的回归套件：
+
+| 套件 | 结果 |
+| :-- | :-- |
+| `--appearance` | **PASS** 33 项外观与语言检查 |
+| `--layers` | **PASS** 104 项多 HUD 层级检查 |
+| `--localization` | 资源层 **PASS**：21 个语区 × 1728 条消息全部通过；GUI 层在 `ar-SA` 的 `SaveBtn` 可见性断言处中止 |
+| `--rendering` | 在透明像素断言处中止 |
+
+后两项不是本次改造引入的：在未改动的上游基线 `GlacierGlimmer/zmd-charge-plus` 上跑同一套件、同一台机器，中止点完全相同（`--localization` 都是 `ar-SA SaveBtn`，`--rendering` 都是 `Real desktop pixels outside both HUD capsules stay transparent`）。这类断言依赖具体桌面会话与 DPI 环境，本机不成立。为免误会，这里明写出来，而不是只贴通过的那几条。
+
+三种架构的 EXE 都已实际启动验证，日志记录 `SCHALE Charge Plus process started. Version=0.1.2`。
+
+---
+
+## 来源、许可与声明
+
+- 上游 HUD：[QinAnze/zmd-charge](https://github.com/QinAnze/zmd-charge)，原作者 **QinAnze**。
+- 二次开发基线：[GlacierGlimmer/zmd-charge-plus](https://github.com/GlacierGlimmer/zmd-charge-plus)，作者 **GlacierGlimmer_冰川雪貓**。
+- 本项目新增的代码与主题改造采用 [MIT License](LICENSE)。上游来源与署名在 [NOTICE.md](NOTICE.md) 中完整保留。
+- **Nunito Sans** 采用 SIL Open Font License 1.1，授权全文见 `Assets/Fonts/NunitoSans-OFL.txt`。
+- **《蔚蓝档案》的角色、名称与美术资产**权利归 NEXON Games 及发行方所有。本项目为非官方社区作品，与其无隶属、授权或背书关系；仓库内不含游戏原始美术资源，只含由此采样得出的配色数值和自绘的光环几何。
+
+数据处理说明见 [PRIVACY.md](PRIVACY.md)。
+
+---
+
+## 找回上游
+
+想回到未改色的原版，或需要 Linux / macOS / Android 版本：
+
+- 未改色的 Windows 原版：[GlacierGlimmer/zmd-charge-plus](https://github.com/GlacierGlimmer/zmd-charge-plus)
+- Linux：[zmd-charge-plus-for-linux](https://github.com/GlacierGlimmer/zmd-charge-plus-for-linux)
+- macOS：[zmd-charge-plus-for-macos](https://github.com/GlacierGlimmer/zmd-charge-plus-for-macos)
+- Android：[zmd-charge-plus-for-android](https://github.com/GlacierGlimmer/zmd-charge-plus-for-android)

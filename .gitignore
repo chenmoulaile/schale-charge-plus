@@ -1,0 +1,52 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+publish/
+dist/
+artifacts/
+TestResults/
+
+# IDE and local state
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.rsuser
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.dmp
+*.mdmp
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local settings and signing secrets
+settings.json
+settings.*.json
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key
+*.pem
+*.snk
+*.cer
+*.crt
+*.pubxml.user
+
+# Isolated official-period regression output
+**/obj-period/
+
+# Avalonia task and isolated regression/native build caches
+**/.avalonia-build-tasks/
+**/obj-bugs/
+native/ECPFrames/build/
+
+# Local Python tooling caches
+__pycache__/
+*.py[cod]

@@ -34,6 +34,9 @@ public sealed record AppSettings
     public List<HudInstanceSettings> HudInstances { get; init; } = new();
 
     public string HudFontFamily { get; init; } = "";
+    // Character skin for the HUD. "schale" is the plain Blue Archive chrome; the rest
+    // are character/outfit variants from HudThemeCatalog.
+    public string HudThemeId { get; init; } = HudThemeCatalog.DefaultId;
     public bool ClickToCycle { get; init; } = false;
 
     public bool AlwaysVisible { get; init; } = false;

@@ -42,7 +42,12 @@ internal static class RuntimeRegressionChecks
         hud.ApplySettings(new() { HudFontFamily="Arial" }); text.Measure(Size.Infinity);
         check(Math.Abs(text.DesiredSize.Width-mono)>1,"Changing HUD font changes the measured rendered text width.");
         hud.ApplySettings(new());
-        check(text.FontFamily.Name.Contains("Inter"),"System default restores bundled font after customization.");
+        // The bundled face is Nunito Sans BA (instanced from the SchaleDB UI typeface),
+        // so the default has to snap back to that family and stay glyph-capable.
+        check(text.FontFamily.Name.Contains("Nunito Sans"),
+            "System default restores bundled font after customization.");
+        check(new Typeface(text.FontFamily).GlyphTypeface.GetGlyph('0') != 0,
+            "Bundled HUD typeface resolves glyphs without an installed font.");
         var profiles=new List<HudProfile>();
         for (int i=0;i<3;i++) profiles.Add(new() { Id=$"native-test-{i}",Name=$"Test {i}",PrimaryTemplate=$"PROFILE{i}",SecondaryTemplate="",RightTemplate="50",TitleTemplate="Test",TaglineTemplate="",ProgressVariable="= 50",AnimationMode="Simple" });
         var options=new AppSettings { AlwaysVisible=true,ClickToCycle=true,PersistentLayer=PersistentHudLayer.Topmost,SamplingIntervalSeconds=.1,

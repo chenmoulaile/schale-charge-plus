@@ -35,7 +35,7 @@
   "Start at login": "Запускати після входу",
   "Start with Linux": "Запускати разом із Linux",
   "Start with macOS": "Запускати разом із macOS",
-  "Start Endfield Charge Plus after sign-in.": "Запускати Endfield Charge Plus після входу.",
+  "Start SCHALE Charge Plus after sign-in.": "Запускати SCHALE Charge Plus після входу.",
   "On battery": "Живлення від батареї",
   "AC power": "Живлення від мережі",
   "Quit": "Вийти",
@@ -195,7 +195,7 @@
   "Shorter intervals sample faster and use more resources. Clocks update each second; external APIs retain their own refresh intervals.": "Коротший інтервал дає частіші вимірювання та більше навантаження. Годинники оновлюються щосекунди, зовнішні API — за власним розкладом.",
   "Simple: quickly reveal the final HUD.": "Спрощена: швидко показати остаточний HUD.",
   "Simple: retract the previous item, then quickly reveal the next.": "Спрощена: сховати попередній профіль і швидко показати наступний.",
-  "Start Endfield Charge Plus after Windows sign-in.": "Запускати Endfield Charge Plus після входу до Windows.",
+  "Start SCHALE Charge Plus after Windows sign-in.": "Запускати SCHALE Charge Plus після входу до Windows.",
   "Try a variable key or feature name, or clear the search.": "Введіть назву змінної або функції чи очистьте пошук.",
   "Use Ctrl or Alt, optionally Shift, with a letter, digit or F1–F24 (except F12). Save to apply; leave blank to disable.": "Використовуйте Ctrl або Alt, за потреби Shift, із літерою, цифрою або F1–F24 (крім F12). Збережіть для застосування; порожнє поле вимикає сполучення.",
   "Each HUD has independent profiles, cycling, font, size, visibility and target display. Select an instance and adjust it in the first two tabs; Locate jumps to position settings. An orange outline and Currently editing label remain on the selected HUD while Settings is open. Save & Apply after adding or removing an instance; closing Settings clears the outline. Sampling interval and click switching are shared by all HUDs and can be changed while editing any instance; language and startup are global. Up to 16 HUDs.": "Кожен HUD має власні профілі, чергу, шрифт, розмір, видимість і цільовий екран. Виберіть HUD і налаштуйте його на перших двох вкладках; пошук HUD відкриває налаштування розташування. Поки налаштування відкриті, вибраний HUD має помаранчеву рамку та позначку поточного редагування. Після додавання або видалення HUD натисніть «Зберегти й застосувати»; закриття налаштувань прибирає рамку. Інтервал вимірювань і перемикання клацанням спільні для всіх HUD та змінюються під час редагування будь-якого з них. Мова й автозапуск також спільні. До 16 HUD.",
@@ -206,6 +206,6 @@
   "Save & Apply to disable the shortcut.": "Збережіть і застосуйте, щоб вимкнути сполучення.",
   "Save & Apply to enable this shortcut.": "Збережіть і застосуйте, щоб увімкнути це сполучення.",
   "Use Ctrl or Alt with a letter, digit or function key (except F12).": "Використовуйте Ctrl або Alt із літерою, цифрою або функціональною клавішею (крім F12).",
-  "Endfield Charge Plus Settings": "Endfield Charge Plus · Налаштування",
+  "SCHALE Charge Plus Settings": "SCHALE Charge Plus · Налаштування",
   "{0} v{1} Settings": "{0} v{1} · Налаштування"
 }

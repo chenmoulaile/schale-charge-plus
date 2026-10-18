@@ -10,6 +10,9 @@ public static class IconCatalog
     {
         // Original presets — kept unchanged.
         ["bolt"] = "M10,1 L4,11 L9,11 L7,19 L16,8 L11,8 Z",
+        // Blue Archive halo: the mark the whole theme is built around. Also the
+        // fallback glyph, so an unknown icon name never surfaces a leftover bolt.
+        ["halo"] = "M12,4.4 C5.9,4.4 1.6,6.9 1.6,9.7 C1.6,12.5 5.9,15 12,15 C18.1,15 22.4,12.5 22.4,9.7 C22.4,6.9 18.1,4.4 12,4.4 Z M12,6.9 C16.3,6.9 19.9,8.1 19.9,9.7 C19.9,11.3 16.3,12.5 12,12.5 C7.7,12.5 4.1,11.3 4.1,9.7 C4.1,8.1 7.7,6.9 12,6.9 Z M10.7,15 L13.3,15 L13.3,18.6 L10.7,18.6 Z M7.4,18.2 L16.6,18.2 L16.6,20.6 L7.4,20.6 Z",
         ["cpu"] = "M5,5 L19,5 L19,19 L5,19 Z M9,9 L15,9 L15,15 L9,15 Z M8,1 L8,4 M12,1 L12,4 M16,1 L16,4 M8,20 L8,23 M12,20 L12,23 M16,20 L16,23 M1,8 L4,8 M1,12 L4,12 M1,16 L4,16 M20,8 L23,8 M20,12 L23,12 M20,16 L23,16",
         ["memory"] = "M3,6 L21,6 L21,18 L3,18 Z M6,9 L18,9 L18,14 L6,14 Z M6,18 L6,21 M10,18 L10,21 M14,18 L14,21 M18,18 L18,21",
         ["network"] = "M12,3 C7,3 3,6 1,9 L4,12 C6,10 9,8 12,8 C15,8 18,10 20,12 L23,9 C21,6 17,3 12,3 Z M12,10 C9,10 7,11 5,14 L8,17 C9,16 10,15 12,15 C14,15 15,16 16,17 L19,14 C17,11 15,10 12,10 Z M12,18 C10.9,18 10,18.9 10,20 C10,21.1 10.9,22 12,22 C13.1,22 14,21.1 14,20 C14,18.9 13.1,18 12,18 Z",
@@ -50,7 +53,7 @@ public static class IconCatalog
 
     public static IReadOnlyList<string> Names { get; } = new[]
     {
-        "bolt", "cpu", "memory", "network", "disk", "clock", "api", "gpu", "battery",
+        "halo", "bolt", "cpu", "memory", "network", "disk", "clock", "api", "gpu", "battery",
         "laptop", "monitor", "server", "database", "cloud", "wifi", "signal", "ethernet",
         "download", "upload", "thermometer", "fan", "gauge", "calendar", "timer",
         "wallet", "coin", "terminal", "code", "globe", "activity", "settings",
@@ -59,8 +62,8 @@ public static class IconCatalog
 
     public static Geometry GetGeometry(string? name)
     {
-        if (string.IsNullOrWhiteSpace(name) || !Paths.TryGetValue(name, out var p)) p = Paths["bolt"];
+        if (string.IsNullOrWhiteSpace(name) || !Paths.TryGetValue(name, out var p)) p = Paths["halo"];
         try { return StreamGeometry.Parse(p); }
-        catch { return StreamGeometry.Parse(Paths["bolt"]); }
+        catch { return StreamGeometry.Parse(Paths["halo"]); }
     }
 }

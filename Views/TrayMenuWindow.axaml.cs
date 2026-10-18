@@ -37,8 +37,8 @@ public partial class TrayMenuWindow : Window
     private static void SetupMenuItem(Border border, TextBlock text, Action onClick)
     {
         var normalBg = Brushes.Transparent;
-        var hoverBg = new SolidColorBrush(Color.Parse("#2A2A2D"));
-        var normalFg = new SolidColorBrush(Color.Parse("#E8E8E8"));
+        var hoverBg = new SolidColorBrush(Color.Parse("#1A2C42"));
+        var normalFg = new SolidColorBrush(Color.Parse("#C9D6E4"));
         var hoverFg = new SolidColorBrush(Color.Parse("#FFFFFF"));
 
         border.PointerEntered += (_, _) =>

@@ -45,12 +45,12 @@ foreach ($arch in @('x64','x86')) {
  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
  IgnorableNamespaces="uap uap5 uap7 uap10 rescap">
  <Identity Name="GlacierGlimmer.EndfieldChargePlus" Publisher="CN=2630DF61-646F-4490-BDEC-93D9A63975E7" Version="$packageVersion" ProcessorArchitecture="$arch" />
- <Properties><DisplayName>Endfield Charge Plus</DisplayName><PublisherDisplayName>GlacierGlimmer冰川雪貓</PublisherDisplayName><Description>Endfield-style configurable Windows status HUD.</Description><Logo>Assets\StoreLogo.png</Logo></Properties>
+ <Properties><DisplayName>SCHALE Charge Plus</DisplayName><PublisherDisplayName>GlacierGlimmer冰川雪貓</PublisherDisplayName><Description>Blue Archive-style configurable Windows status HUD.</Description><Logo>Assets\StoreLogo.png</Logo></Properties>
  <Resources><Resource Language="zh-CN" /><Resource Language="en-US" /></Resources>
  <Dependencies><TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26100.0" /></Dependencies>
  <Applications><Application Id="App" Executable="App\EndfieldChargePlus.exe" uap10:RuntimeBehavior="packagedClassicApp" uap10:TrustLevel="mediumIL">
-  <uap:VisualElements DisplayName="Endfield Charge Plus" Description="Endfield-style configurable Windows status HUD" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="transparent" />
-  <Extensions><uap5:Extension Category="windows.startupTask" Executable="App\EndfieldChargePlus.exe" EntryPoint="Windows.FullTrustApplication"><uap5:StartupTask TaskId="EndfieldChargePlusStartup" Enabled="false" DisplayName="Endfield Charge Plus" /></uap5:Extension></Extensions>
+  <uap:VisualElements DisplayName="SCHALE Charge Plus" Description="Blue Archive-style configurable Windows status HUD" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="transparent" />
+  <Extensions><uap5:Extension Category="windows.startupTask" Executable="App\EndfieldChargePlus.exe" EntryPoint="Windows.FullTrustApplication"><uap5:StartupTask TaskId="EndfieldChargePlusStartup" Enabled="false" DisplayName="SCHALE Charge Plus" /></uap5:Extension></Extensions>
  </Application></Applications>
  <Capabilities><Capability Name="internetClient" /><uap7:Capability Name="globalMediaControl" /><rescap:Capability Name="runFullTrust" /></Capabilities>
 </Package>

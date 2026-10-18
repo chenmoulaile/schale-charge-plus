@@ -15,7 +15,7 @@ public static class ProcessPrivileges
             return false;
         }
     }
-    public static string SettingsTitle(string version,string productName="Endfield Charge Plus") =>
+    public static string SettingsTitle(string version,string productName="SCHALE Charge Plus") =>
         LocalizationManager.Formatted($"{productName} v{version} 设置",(System.FormattableString)$"{productName} v{version} Settings")
         + (IsElevated ? "（Endministrator Mode）" : "");
     [DllImport("libc")] private static extern uint geteuid();

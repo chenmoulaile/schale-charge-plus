@@ -1,15 +1,28 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=netstandard">
-  <Color x:Key="Hud.Pill">#FF312F30</Color>
-  <Color x:Key="Hud.IconPlate">#FFE9E7E4</Color>
-  <Color x:Key="Hud.BoltDark">#FF141313</Color>
+  <!-- Blue Archive palette. Values sampled from official key-art / UI assets:
+       #212529 plate, #00D9FA signature cyan, #FF1D98 magenta, #FFE99D warm gold,
+       #1B3650 / #153F68 navy. -->
+  <Color x:Key="Hud.Pill">#FF17263C</Color>
+  <Color x:Key="Hud.PillEdge">#FF2C5C8C</Color>
+  <Color x:Key="Hud.IconPlate">#FF00D9FA</Color>
+  <Color x:Key="Hud.BoltDark">#FF0A1626</Color>
   <Color x:Key="Hud.TextPrimary">#FFFFFFFF</Color>
-  <x:Double x:Key="Hud.TextSecondaryOpacity">0.55</x:Double>
-  <x:Double x:Key="Hud.TextTertiaryOpacity">0.40</x:Double>
-  <Color x:Key="Hud.Accent">#FFC6CA4C</Color>
-  <Color x:Key="Hud.BadgeDark">#FF262425</Color>
+  <x:Double x:Key="Hud.TextSecondaryOpacity">0.62</x:Double>
+  <x:Double x:Key="Hud.TextTertiaryOpacity">0.44</x:Double>
+  <Color x:Key="Hud.Accent">#FF00D9FA</Color>
+  <!-- A character's halo colour is constant across her alts, so it is its own key
+       rather than a second use of Hud.Accent. -->
+  <Color x:Key="Hud.HaloAccent">#FF00D9FA</Color>
+  <Color x:Key="Hud.AccentGold">#FFFFE99D</Color>
+  <Color x:Key="Hud.AccentMagenta">#FFFF1D98</Color>
+  <Color x:Key="Hud.BadgeDark">#FF102A46</Color>
+  <Color x:Key="Hud.HaloGlow">#FF7FE9FF</Color>
+  <Color x:Key="Hud.Ripple">#FF2E7FB4</Color>
   <sys:Double x:Key="Hud.PillRadius">43</sys:Double>
-  <FontFamily x:Key="Hud.FontFamily">avares://Avalonia.Fonts.Inter/Assets#Inter, Microsoft YaHei UI, PingFang SC, sans-serif</FontFamily>
-  <FontFamily x:Key="Hud.FontFamilyNumeric">avares://Avalonia.Fonts.Inter/Assets#Inter, Microsoft YaHei UI, PingFang SC, sans-serif</FontFamily>
+  <!-- Nunito Sans is the SchaleDB UI typeface; CJK glyphs fall through to the
+       system faces because Nunito Sans carries no Han coverage. -->
+  <FontFamily x:Key="Hud.FontFamily">avares://EndfieldChargePlus/Assets/Fonts#Nunito Sans BA, Microsoft YaHei UI, PingFang SC, sans-serif</FontFamily>
+  <FontFamily x:Key="Hud.FontFamilyNumeric">avares://EndfieldChargePlus/Assets/Fonts#Nunito Sans BA, Microsoft YaHei UI, PingFang SC, sans-serif</FontFamily>
 </ResourceDictionary>

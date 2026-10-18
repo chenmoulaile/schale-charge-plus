@@ -98,6 +98,7 @@ public partial class SettingsWindow : Window
 
         HudFontCombo.Items.Add(LocalizationManager.Text("系统默认", "System default"));
         foreach (var family in FontManager.Current.SystemFonts.OrderBy(f => f.Name)) HudFontCombo.Items.Add(family.Name);
+        PopulateThemeCombo();
         ApplySettingsToControls(settings);
         UpdateLanguageSwitchVisual();
         InitializeInstanceEditor();
@@ -165,6 +166,9 @@ public partial class SettingsWindow : Window
             int layerIndex = PersistentLayerCombo.SelectedIndex;
             int modeIndex = PositionModeCombo.SelectedIndex;
             int positionIndex = PositionCombo.SelectedIndex;
+            int themeIndex = HudThemeCombo.SelectedIndex;
+
+            RefreshThemeItems();
 
             PersistentLayerCombo.Items.Clear();
             PersistentLayerCombo.Items.Add(LocalizationManager.Text("始终置顶", "Always on Top"));
@@ -183,8 +187,44 @@ public partial class SettingsWindow : Window
             if (layerIndex >= 0) PersistentLayerCombo.SelectedIndex = Math.Min(layerIndex, PersistentLayerCombo.Items.Count - 1);
             if (modeIndex >= 0) PositionModeCombo.SelectedIndex = Math.Min(modeIndex, PositionModeCombo.Items.Count - 1);
             if (positionIndex >= 0) PositionCombo.SelectedIndex = Math.Min(positionIndex, PositionCombo.Items.Count - 1);
+            if (themeIndex >= 0) HudThemeCombo.SelectedIndex = Math.Min(themeIndex, HudThemeCombo.Items.Count - 1);
         }
         finally { _applyingPositionUi=previousPositionUi; }
+    }
+
+    private void PopulateThemeCombo()
+    {
+        RefreshThemeItems();
+        HudThemeCombo.SelectionChanged += (_, _) => PreviewSelectedTheme();
+    }
+
+    private void RefreshThemeItems()
+    {
+        int index = HudThemeCombo.SelectedIndex;
+        HudThemeCombo.Items.Clear();
+        foreach (var theme in HudThemeCatalog.All)
+            HudThemeCombo.Items.Add(LocalizationManager.Text(theme.NameZh, theme.NameEn));
+        if (index >= 0) HudThemeCombo.SelectedIndex = Math.Min(index, HudThemeCombo.Items.Count - 1);
+    }
+
+    private string SelectedThemeId()
+    {
+        int index = HudThemeCombo.SelectedIndex;
+        return index >= 0 && index < HudThemeCatalog.All.Count
+            ? HudThemeCatalog.All[index].Id
+            : HudThemeCatalog.DefaultId;
+    }
+
+    /// <summary>
+    /// Recolours the HUD as soon as the picker changes so the choice can be judged in
+    /// place; nothing is persisted until Save &amp; Apply.
+    /// </summary>
+    private void PreviewSelectedTheme()
+    {
+        if (_applyingPositionUi) return;
+        var hud = _runtime.GetInstanceHud(_selectedInstanceId);
+        if (hud is null || hud.IsClosed) return;
+        hud.ApplySettings(_settings with { HudThemeId = SelectedThemeId() });
     }
 
     private async void OnLanguageSelected(string preference)
@@ -387,6 +427,9 @@ public partial class SettingsWindow : Window
             HudFontCombo.SelectedIndex = 0;
             for (int i=1; i<HudFontCombo.Items.Count; i++)
                 if (string.Equals(HudFontCombo.Items[i]?.ToString(), settings.HudFontFamily, StringComparison.OrdinalIgnoreCase)) HudFontCombo.SelectedIndex=i;
+            HudThemeCombo.SelectedIndex = Math.Max(0, HudThemeCatalog.All
+                .Select((theme, index) => (theme, index))
+                .FirstOrDefault(pair => pair.theme.Id == HudThemeCatalog.NormalizeId(settings.HudThemeId)).index);
             ClickToCycleSwitch.IsChecked = _rootSettings.ClickToCycle;
             HudEnabledSwitch.IsChecked = settings.HudEnabled;
             StartupSwitch.IsChecked = settings.StartWithWindows;
@@ -431,6 +474,7 @@ public partial class SettingsWindow : Window
             HudOpacity = Math.Clamp(HudOpacitySlider.Value / 100.0, 0.10, 1.0),
 
             HudFontFamily = HudFontCombo.SelectedIndex > 0 ? HudFontCombo.SelectedItem?.ToString() ?? "" : "",
+            HudThemeId = SelectedThemeId(),
             ClickToCycle = ClickToCycleSwitch.IsChecked == true,
             AlwaysVisible = AlwaysVisibleSwitch.IsChecked == true,
             HotZoneEnabled=HotZoneEnabledCheck.IsChecked==true,HotZonePosition=(HudPosition)Math.Max(0,HotZonePositionCombo.SelectedIndex),
@@ -526,7 +570,7 @@ public partial class SettingsWindow : Window
         {
             var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
             {
-                Title = LocalizationManager.Text("导出 Endfield Charge Plus 配置", "Export Endfield Charge Plus Config"),
+                Title = LocalizationManager.Text("导出 SCHALE Charge Plus 配置", "Export SCHALE Charge Plus Config"),
                 SuggestedFileName = $"EndfieldChargePlus-settings-{DateTime.Now:yyyyMMdd-HHmmss}.json",
                 FileTypeChoices = new[]
                 {
@@ -551,7 +595,7 @@ public partial class SettingsWindow : Window
         {
             var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
             {
-                Title = LocalizationManager.Text("导入 Endfield Charge Plus 配置", "Import Endfield Charge Plus Config"),
+                Title = LocalizationManager.Text("导入 SCHALE Charge Plus 配置", "Import SCHALE Charge Plus Config"),
                 AllowMultiple = false,
                 FileTypeFilter = new[]
                 {

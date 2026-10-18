@@ -9,11 +9,11 @@
         CanResize="False"
         Focusable="True">
   <Border CornerRadius="10"
-          Background="#1E1E20"
+          Background="#101B28"
           Padding="6"
           BoxShadow="0 4 20 #40000000"
           BorderThickness="1"
-          BorderBrush="#2A2A2C">
+          BorderBrush="#1A2C42">
     <StackPanel Spacing="2" VerticalAlignment="Center">
       <Border x:Name="MenuPreview"
               Height="36"
@@ -25,7 +25,7 @@
                    Text="预览 HUD"
                    FontSize="13"
                    VerticalAlignment="Center"
-                   Foreground="#E8E8E8"/>
+                   Foreground="#C9D6E4"/>
       </Border>
 
       <Border x:Name="MenuSettings"
@@ -38,10 +38,10 @@
                    Text="设置"
                    FontSize="13"
                    VerticalAlignment="Center"
-                   Foreground="#E8E8E8"/>
+                   Foreground="#C9D6E4"/>
       </Border>
 
-      <Border Height="1" Background="#2A2A2C" Margin="8,4"/>
+      <Border Height="1" Background="#1A2C42" Margin="8,4"/>
 
       <Border x:Name="MenuExit"
               Height="36"
@@ -53,7 +53,7 @@
                    Text="退出"
                    FontSize="13"
                    VerticalAlignment="Center"
-                   Foreground="#E8E8E8"/>
+                   Foreground="#C9D6E4"/>
       </Border>
     </StackPanel>
   </Border>

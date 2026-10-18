@@ -674,7 +674,7 @@ public partial class HudCustomizerView : UserControl
             ProgressMax = (double)(ProgressMaxBox.Value ?? 100),
             LeftIcon = LeftIconCombo.SelectedItem?.ToString() ?? "bolt",
             RightIcon = RightIconCombo.SelectedItem?.ToString() ?? "battery",
-            AccentColor = string.IsNullOrWhiteSpace(AccentColorBox.Text) ? "#C6CA4C" : AccentColorBox.Text!.Trim(),
+            AccentColor = string.IsNullOrWhiteSpace(AccentColorBox.Text) ? "#00D9FA" : AccentColorBox.Text!.Trim(),
             ColorRules = ParseColorRules(ColorRulesBox.Text),
             TimeTargetEnabled = isTime ? TimeTargetSwitch.IsChecked == true : old.TimeTargetEnabled,
             TimeTarget = isTime ? NormalizeTimeTarget(TimeTargetBox.Text, old.TimeTarget) : old.TimeTarget,

@@ -137,6 +137,19 @@ internal static class HudAnimations
         return a;
     }
 
+    public static Animation Halo(AnimationOptions o)
+    {
+        // The halo belongs to the icon plate, so it shares the icon's cues: pops in
+        // with it, then stays lit in the C state as the one persistent flourish.
+        var a = New(o);
+        a.Children.Add(KF(MapCue(o, 0.00), null, Op(0), SX(0.55), SY(0.55)));
+        a.Children.Add(KF(MapCue(o, TStart), KS_In, Op(0), SX(0.55), SY(0.55)));
+        a.Children.Add(KF(MapCue(o, TBoltPop), BackOut(o), Op(1), SX(1.06), SY(1.06)));
+        a.Children.Add(KF(MapCue(o, TExpand), KS_Out, Op(1), SX(1), SY(1)));
+        a.Children.Add(KF(MapCue(o, THoldC), KS_In, Op(1), SX(1), SY(1)));
+        return a;
+    }
+
     public static Animation CircleForm(AnimationOptions o)
     {
         var a = New(o);

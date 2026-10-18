@@ -23,6 +23,7 @@ public partial class HudWindow : Window
     private CancellationTokenSource? _cts;
     private AppSettings _settings = new();
     private AnimationOptions _animOptions = AnimationOptions.Default;
+    private HudThemeDefinition _theme = HudThemeCatalog.Get(HudThemeCatalog.DefaultId);
     private bool _persistent;
     private WindowsHudHitTest? _hitTest;
     private WindowsHudInteraction? _interaction;
@@ -75,7 +76,7 @@ public partial class HudWindow : Window
         _editingHighlight=enabled;
         _editingHint!.Text=LocalizationManager.Text("当前正在设置","Currently editing");
         _editingFrame.IsVisible=enabled;
-        Title=enabled ? $"Endfield Charge Plus · {name}" : "Endfield Charge Plus";
+        Title=enabled ? $"SCHALE Charge Plus · {name}" : "SCHALE Charge Plus";
     }
 
     public bool IsHudBusy { get; private set; }
@@ -125,7 +126,9 @@ public partial class HudWindow : Window
         _settings = settings;
         if (_closed) return;
         // Named controls exist immediately after XAML loads; the visual tree does not.
-        FontFamily numeric=new("avares://Avalonia.Fonts.Inter/Assets#Inter, Microsoft YaHei UI, PingFang SC, sans-serif");
+        // Mirrors Hud.FontFamily in HudTheme.axaml, which XAML cannot apply here because
+        // the family is also inlined into every TextBlock at runtime.
+        FontFamily numeric=new("avares://EndfieldChargePlus/Assets/Fonts#Nunito Sans BA, Microsoft YaHei UI, PingFang SC, sans-serif");
         FontFamily title=numeric;
         if (!string.IsNullOrWhiteSpace(settings.HudFontFamily))
             numeric=title=new FontFamily(settings.HudFontFamily);
@@ -144,10 +147,38 @@ public partial class HudWindow : Window
         Root.Width=Width;Root.Height=100*Math.Max(1,fontScale);
         UpdateContentGeometry();
         Opacity = Math.Clamp(settings.HudOpacity, 0.0, 1.0);
+        ApplyTheme(settings.HudThemeId);
         ApplyWindowLayer(_persistent);
 
         if (IsVisible)
             PositionHud();
+    }
+
+    /// <summary>
+    /// Recolours the HUD for a character skin. The badge ring is repainted too, but only
+    /// when the current render data still carries the built-in accent — an explicit
+    /// per-profile or colour-rule accent always wins over the theme.
+    /// </summary>
+    private void ApplyTheme(string? themeId)
+    {
+        _theme = HudThemeCatalog.Get(themeId);
+        HudThemeApplier.Apply(this, _theme);
+        if (_lastRenderData is { } data && UsesThemeAccent(data.AccentColor))
+            PaintAccent(_theme.Accent);
+    }
+
+    private static bool UsesThemeAccent(string? accentColor)
+        => string.IsNullOrWhiteSpace(accentColor)
+           || string.Equals(accentColor.Trim(), "#00D9FA", StringComparison.OrdinalIgnoreCase);
+
+    private void PaintAccent(Color accent)
+    {
+        var accentBrush = new SolidColorBrush(accent);
+        BadgeArc.Stroke = accentBrush;
+        LaptopScreen.BorderBrush = accentBrush;
+        LaptopBase.Background = accentBrush;
+        BadgeElectrode.Background = accentBrush;
+        BadgeGlyph.Foreground = accentBrush;
     }
 
     private void ApplyWindowLayer(bool persistent)
@@ -211,6 +242,7 @@ public partial class HudWindow : Window
                     HudAnimations.PillHeight(_animOptions).RunAsync(RippleHost, ct),
                     HudAnimations.ScaleOut(_animOptions).RunAsync(ScaleHost, ct),
                     HudAnimations.BoltIcon(_animOptions).RunAsync(BoltIcon, ct),
+                    HudAnimations.Halo(_animOptions).RunAsync(HaloHost, ct),
                     HudAnimations.RippleHost(_animOptions).RunAsync(RippleHost, ct),
                     HudAnimations.CircleForm(_animOptions).RunAsync(CircleForm, ct),
                     HudAnimations.SquareForm(_animOptions).RunAsync(SquareForm, ct),
@@ -327,6 +359,7 @@ public partial class HudWindow : Window
                     HudAnimations.PillHeight(_animOptions).RunAsync(Pill, ct),
                     HudAnimations.PillHeight(_animOptions).RunAsync(RippleHost, ct),
                     HudAnimations.BoltIcon(_animOptions).RunAsync(BoltIcon, ct),
+                    HudAnimations.Halo(_animOptions).RunAsync(HaloHost, ct),
                     HudAnimations.RippleHost(_animOptions).RunAsync(RippleHost, ct),
                     HudAnimations.CircleForm(_animOptions).RunAsync(CircleForm, ct),
                     HudAnimations.SquareForm(_animOptions).RunAsync(SquareForm, ct),
@@ -444,15 +477,7 @@ public partial class HudWindow : Window
         }
 
         if (previous?.AccentColor != data.AccentColor)
-        {
-            var accent = TryColor(data.AccentColor, Color.Parse("#C6CA4C"));
-            var accentBrush = new SolidColorBrush(accent);
-            BadgeArc.Stroke = accentBrush;
-            LaptopScreen.BorderBrush = accentBrush;
-            LaptopBase.Background = accentBrush;
-            BadgeElectrode.Background = accentBrush;
-            BadgeGlyph.Foreground = accentBrush;
-        }
+            PaintAccent(UsesThemeAccent(data.AccentColor) ? _theme.Accent : TryColor(data.AccentColor, _theme.Accent));
 
         if (previous is null || Math.Abs(previous.Progress - data.Progress) > 0.0005)
             SetProgressTarget(data.Progress, animate: previous is not null && IsVisible);
@@ -518,7 +543,7 @@ public partial class HudWindow : Window
 
     private static Color TryColor(string? value, Color fallback)
     {
-        try { return Color.Parse(string.IsNullOrWhiteSpace(value) ? "#C6CA4C" : value); }
+        try { return Color.Parse(string.IsNullOrWhiteSpace(value) ? "#00D9FA" : value); }
         catch { return fallback; }
     }
 
@@ -576,6 +601,8 @@ public partial class HudWindow : Window
             Children = { new ScaleTransform(0.4d, 0.4d), new TranslateTransform(0d, 0d) },
         };
         BoltIcon.Opacity = 0;
+        HaloHost.RenderTransform = new ScaleTransform(0.55d, 0.55d);
+        HaloHost.Opacity = 0;
 
         RippleInnerHost.RenderTransform = new TranslateTransform(0d, 16d);
         RippleMidHost.RenderTransform = new TranslateTransform(0d, 16d);
@@ -606,7 +633,11 @@ public partial class HudWindow : Window
         {
             Children = { new ScaleTransform(1d, 1d), new TranslateTransform(-245d, 0d) },
         };
+        // The halo rides the icon plate, so in the simple timeline it fades in with
+        // BoltIcon instead of being animated on its own cue.
         BoltIcon.Opacity = 0;
+        HaloHost.Opacity = 1;
+        HaloHost.RenderTransform = new ScaleTransform(1d, 1d);
         CircleForm.Opacity = 0;
         SquareForm.Opacity = 1;
         TitleHost.Opacity = 0;
@@ -639,6 +670,11 @@ public partial class HudWindow : Window
             Children = { new ScaleTransform(1d, 1d), new TranslateTransform(-245d, 0d) },
         };
         BoltIcon.Opacity = 1;
+        // The halo animation ends here with FillMode.Forward, but the final state is
+        // also reached from UpdatePersistent on a hidden HUD where no animation ran,
+        // so pin it explicitly instead of trusting the last keyframe.
+        HaloHost.Opacity = 1;
+        HaloHost.RenderTransform = new ScaleTransform(1d, 1d);
         CircleForm.Opacity = 0;
         SquareForm.Opacity = 1;
 

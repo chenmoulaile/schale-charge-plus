@@ -42,7 +42,7 @@ public static partial class LocalizationManager
     {
         // Settings shell
         ["HUD 设置"] = "HUD SETTINGS",
-        ["Endfield Charge Plus 设置"] = "Endfield Charge Plus Settings",
+        ["SCHALE Charge Plus 设置"] = "SCHALE Charge Plus Settings",
         ["配置文件夹"] = "Config Folder",
         ["保存并应用"] = "Save & Apply",
         ["显示与位置"] = "Display & Position",
@@ -99,7 +99,7 @@ public static partial class LocalizationManager
         ["同时控制主 HUD 与附加实例。隐藏期间暂停自动呼出，再按一次恢复原有显示模式；重启后恢复显示。"] = "Controls the primary HUD and additional instances together. Automatic summons pause while hidden. Press again to restore the previous display mode; restarting restores visibility.",
         ["控制 HUD 的全部显示功能。"] = "Controls all HUD display functions.",
         ["开机启动"] = "Start with Windows",
-        ["登录 Windows 后自动启动 Endfield Charge Plus。"] = "Start Endfield Charge Plus after Windows sign-in.",
+        ["登录 Windows 后自动启动 SCHALE Charge Plus。"] = "Start SCHALE Charge Plus after Windows sign-in.",
         ["显示方式"] = "Display Mode",
         ["一直显示"] = "Always Visible",
         ["开启：HUD 持续显示。\n关闭：电源插拔显示电池；鼠标移到目标屏幕的已配置热区可唤出当前方案。"] = "On: keep the HUD visible.\nOff: power changes show Battery; move the pointer into the configured hot zone on the target display to summon the active profile.",
@@ -125,7 +125,7 @@ public static partial class LocalizationManager
         ["波纹幅度"] = "Ripple Spread",
         ["硬件采样间隔 / 秒"] = "Hardware sampling interval / seconds",
         ["数值越大，硬件更新越慢；时钟仍按秒更新。"] = "Larger values update hardware less often; clocks still update every second.",
-        ["终末地风格状态栏 HUD"] = "Endfield-style Status HUD",
+        ["蔚蓝档案风格状态栏 HUD"] = "Blue Archive-style Status HUD",
         ["构建日期  2026.10.18"] = "Build  2026.10.18",
         ["检查更新"] = "Check Updates",
         ["当前版本：v0.1.2"] = "Current: v0.1.2",

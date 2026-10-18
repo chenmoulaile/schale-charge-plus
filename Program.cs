@@ -88,7 +88,7 @@ internal static class Program
         }
 
         AppLog.Initialize();
-        AppLog.Info($"Endfield Charge Plus process started. Version={typeof(Program).Assembly.GetName().Version?.ToString(3) ?? "unknown"}");
+        AppLog.Info($"SCHALE Charge Plus process started. Version={typeof(Program).Assembly.GetName().Version?.ToString(3) ?? "unknown"}");
 
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
@@ -112,7 +112,7 @@ internal static class Program
         }
         finally
         {
-            AppLog.Info("Endfield Charge Plus process ended.");
+            AppLog.Info("SCHALE Charge Plus process ended.");
 
             try { _activationEvent?.Dispose(); } catch { }
             _activationEvent = null;

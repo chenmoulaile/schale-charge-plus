@@ -166,7 +166,7 @@ public partial class App : Application
                     .Replace("最新版本：", "", StringComparison.Ordinal)
                     .Replace("Latest: ", "", StringComparison.Ordinal);
                 _tray?.ShowNotification(
-                    LocalizationManager.Text("Endfield Charge Plus 有新版本", "Endfield Charge Plus update available"),
+                    LocalizationManager.Text("SCHALE Charge Plus 有新版本", "SCHALE Charge Plus update available"),
                     LocalizationManager.Formatted($"发现 {latest}。可在“关于”页面查看更新状态。", (System.FormattableString)$"Found {latest}. See About for update details."));
             }
         });
@@ -186,7 +186,7 @@ public partial class App : Application
                     CloseTrayMenu();
                     OpenSettingsWindow();
                 },
-                "Endfield Charge Plus");
+                "SCHALE Charge Plus");
         }
         catch (Exception ex)
         {

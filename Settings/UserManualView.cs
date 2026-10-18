@@ -12,11 +12,11 @@ public sealed class UserManualView : UserControl
 {
     internal TextBox SearchBox {get;}=new(){Name="ManualSearch",Margin=new Thickness(0,10,0,12)};
     internal ListBox ChapterList {get;}=new(){Name="ManualChapterList",Background=Brushes.Transparent,BorderThickness=new Thickness(0)};
-    private readonly TextBlock _navTitle=new(){FontSize=16,FontWeight=FontWeight.SemiBold,Foreground=Brush.Parse("#C6CA4C")};
+    private readonly TextBlock _navTitle=new(){FontSize=16,FontWeight=FontWeight.SemiBold,Foreground=Brush.Parse("#00D9FA")};
     private readonly TextBlock _navCount=new(){FontSize=11,Foreground=Brushes.Gray,Margin=new Thickness(0,10,0,0)};
     private readonly TextBlock _title=new(){FontSize=25,FontWeight=FontWeight.SemiBold,TextWrapping=TextWrapping.Wrap};
-    private readonly TextBlock _summary=new(){FontSize=13,LineHeight=20,TextWrapping=TextWrapping.Wrap,Foreground=Brush.Parse("#A9A9B0")};
-    private readonly TextBlock _location=new(){FontSize=11,Foreground=Brush.Parse("#C6CA4C")};
+    private readonly TextBlock _summary=new(){FontSize=13,LineHeight=20,TextWrapping=TextWrapping.Wrap,Foreground=Brush.Parse("#7995BA")};
+    private readonly TextBlock _location=new(){FontSize=11,Foreground=Brush.Parse("#00D9FA")};
     private readonly WrapPanel _sectionLinks=new(){Orientation=Orientation.Horizontal};
     private readonly StackPanel _body=new(){Spacing=14};
     private readonly ScrollViewer _scroll=new(){Name="ManualReadingScroll",VerticalScrollBarVisibility=Avalonia.Controls.Primitives.ScrollBarVisibility.Auto};
@@ -39,7 +39,7 @@ public sealed class UserManualView : UserControl
             Text=entry.ToString(),FontSize=13,LineHeight=20,TextWrapping=TextWrapping.Wrap,Margin=new Thickness(2,6)});
         var nav=new Grid{RowDefinitions=new("Auto,Auto,*,Auto")};
         nav.Children.Add(_navTitle);Grid.SetRow(SearchBox,1);nav.Children.Add(SearchBox);Grid.SetRow(ChapterList,2);nav.Children.Add(ChapterList);Grid.SetRow(_navCount,3);nav.Children.Add(_navCount);
-        var navBorder=new Border{Background=Brush.Parse("#222224"),BorderBrush=Brush.Parse("#343438"),BorderThickness=new Thickness(1),CornerRadius=new CornerRadius(10),Padding=new Thickness(14),Child=nav};
+        var navBorder=new Border{Background=Brush.Parse("#13202F"),BorderBrush=Brush.Parse("#22395A"),BorderThickness=new Thickness(1),CornerRadius=new CornerRadius(10),Padding=new Thickness(14),Child=nav};
         var header=new StackPanel{Spacing=8,Margin=new Thickness(0,2,0,12)};
         header.Children.Add(_location);header.Children.Add(_title);header.Children.Add(_summary);header.Children.Add(_sectionLinks);
         var footer=new Grid{ColumnDefinitions=new("*,Auto,Auto"),Margin=new Thickness(0,12,0,0)};
@@ -96,14 +96,14 @@ public sealed class UserManualView : UserControl
             var jump=new Button{Content=block.Title.Value,FontSize=11,Padding=new Thickness(9,5),Margin=new Thickness(0,2,6,2)};
             jump.Click+=(_,_)=>ScrollToSection(block.Id);_sectionLinks.Children.Add(jump);
             var card=new StackPanel{Spacing=11};
-            card.Children.Add(new TextBlock{Text=block.Title.Value,FontSize=16,FontWeight=FontWeight.SemiBold,Foreground=Brush.Parse("#E5E5EA"),TextWrapping=TextWrapping.Wrap});
+            card.Children.Add(new TextBlock{Text=block.Title.Value,FontSize=16,FontWeight=FontWeight.SemiBold,Foreground=Brush.Parse("#C6D3E1"),TextWrapping=TextWrapping.Wrap});
             if(block.Kind=="steps")
             {
                 int step=0;
                 foreach(var text in block.Body.Value.Split('\n',StringSplitOptions.RemoveEmptyEntries))
                 {
                     var row=new Grid{ColumnDefinitions=new("26,*")};
-                    row.Children.Add(new TextBlock{Text=(++step).ToString("00"),FontSize=12,FontWeight=FontWeight.Bold,Foreground=Brush.Parse("#C6CA4C"),Margin=new Thickness(0,2,6,0)});
+                    row.Children.Add(new TextBlock{Text=(++step).ToString("00"),FontSize=12,FontWeight=FontWeight.Bold,Foreground=Brush.Parse("#00D9FA"),Margin=new Thickness(0,2,6,0)});
                     var paragraph=Paragraph(text);Grid.SetColumn(paragraph,1);row.Children.Add(paragraph);card.Children.Add(row);
                 }
             }
@@ -115,14 +115,14 @@ public sealed class UserManualView : UserControl
                 copy.Click+=async(_,_)=>{if(TopLevel.GetTopLevel(this)?.Clipboard is { } clipboard)await clipboard.SetTextAsync(block.Code);};
                 codePanel.FlowDirection=FlowDirection.LeftToRight;
                 codePanel.Children.Add(copy);codePanel.Children.Add(new ScrollViewer{HorizontalScrollBarVisibility=Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,Content=new SelectableTextBlock{Text=block.Code,FontFamily=new FontFamily("Consolas, Cascadia Mono, monospace"),FontSize=12,LineHeight=19,TextWrapping=TextWrapping.NoWrap,FlowDirection=FlowDirection.LeftToRight}});
-                card.Children.Add(new Border{Background=Brush.Parse("#19191B"),CornerRadius=new CornerRadius(6),Padding=new Thickness(12),Child=codePanel});
+                card.Children.Add(new Border{Background=Brush.Parse("#0C1520"),CornerRadius=new CornerRadius(6),Padding=new Thickness(12),Child=codePanel});
             }
             if(block.Target is { } target)
             {
-                var action=new Button{Content=LocalizationManager.Text("打开对应设置 →","Open settings →"),Foreground=Brush.Parse("#C6CA4C"),HorizontalAlignment=HorizontalAlignment.Left,Padding=new Thickness(12,7)};
+                var action=new Button{Content=LocalizationManager.Text("打开对应设置 →","Open settings →"),Foreground=Brush.Parse("#00D9FA"),HorizontalAlignment=HorizontalAlignment.Left,Padding=new Thickness(12,7)};
                 action.Click+=(_,_)=>NavigationRequested?.Invoke(target);card.Children.Add(action);
             }
-            var border=new Border{Background=Brush.Parse("#242426"),BorderBrush=Brush.Parse("#343438"),BorderThickness=new Thickness(1),CornerRadius=new CornerRadius(9),Padding=new Thickness(18),Child=card};
+            var border=new Border{Background=Brush.Parse("#152334"),BorderBrush=Brush.Parse("#22395A"),BorderThickness=new Thickness(1),CornerRadius=new CornerRadius(9),Padding=new Thickness(18),Child=card};
             _sections[block.Id]=border;_body.Children.Add(border);
         }
         _scroll.Offset=new Vector(0,0);
@@ -131,5 +131,5 @@ public sealed class UserManualView : UserControl
     {
         if(_sections.TryGetValue(id,out var section))Dispatcher.UIThread.Post(()=>section.BringIntoView(),DispatcherPriority.Loaded);
     }
-    private static TextBlock Paragraph(string text)=>new(){Text=text,FontSize=13,LineHeight=22,TextWrapping=TextWrapping.Wrap,Foreground=Brush.Parse("#BDBDC4")};
+    private static TextBlock Paragraph(string text)=>new(){Text=text,FontSize=13,LineHeight=22,TextWrapping=TextWrapping.Wrap,Foreground=Brush.Parse("#8FA7C7")};
 }

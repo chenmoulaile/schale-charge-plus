@@ -19,7 +19,7 @@ internal sealed class LanguageSelectionWindow : Window
     private readonly TextBox _search=new() {Name="LanguageSearch",MinHeight=38,FlowDirection=FlowDirection.LeftToRight};
     private readonly ListBox _languages=new() {Name="LanguageList"};
     private readonly TextBlock _heading=new() {FontSize=22,HorizontalAlignment=HorizontalAlignment.Center};
-    private readonly TextBlock _translationNotice=new() {Name="LanguageTranslationNotice",TextWrapping=TextWrapping.Wrap,TextAlignment=TextAlignment.Center,HorizontalAlignment=HorizontalAlignment.Stretch,Foreground=Brush.Parse("#A4A4AA"),Margin=new Thickness(0,14,0,0)};
+    private readonly TextBlock _translationNotice=new() {Name="LanguageTranslationNotice",TextWrapping=TextWrapping.Wrap,TextAlignment=TextAlignment.Center,HorizontalAlignment=HorizontalAlignment.Stretch,Foreground=Brush.Parse("#7391B7"),Margin=new Thickness(0,14,0,0)};
     private readonly Button _appearance=new() {Name="GlobalAppearanceButton",MinHeight=42,HorizontalAlignment=HorizontalAlignment.Stretch,HorizontalContentAlignment=HorizontalAlignment.Center};
     private readonly Button _done=new() {Name="LanguageDoneButton",MinHeight=42,HorizontalAlignment=HorizontalAlignment.Stretch,HorizontalContentAlignment=HorizontalAlignment.Center};
     private Choice[] _choices=Array.Empty<Choice>();
@@ -28,11 +28,14 @@ internal sealed class LanguageSelectionWindow : Window
     public LanguageSelectionWindow(Func<AppSettings> settings,Action<string> choose,Func<double,double,Task> scale)
     {
         _settings=settings;_choose=choose;_scale=scale;
-        Width=900;Height=720;MinWidth=580;MinHeight=440;Background=Brush.Parse("#19191B");WindowStartupLocation=WindowStartupLocation.CenterOwner;
+        Width=900;Height=720;MinWidth=580;MinHeight=440;Background=Brush.Parse("#0C1520");WindowStartupLocation=WindowStartupLocation.CenterOwner;
         var root=new Grid {RowDefinitions=new RowDefinitions("Auto,Auto,*,Auto,Auto"),Margin=new Thickness(28,20),MinWidth=520,MinHeight=380};
         root.Children.Add(_heading);
         _search.MaxWidth=660;_search.HorizontalAlignment=HorizontalAlignment.Stretch;_search.Margin=new Thickness(0,18,0,14);Grid.SetRow(_search,1);root.Children.Add(_search);
-        var frame=new Border {MaxWidth=560,HorizontalAlignment=HorizontalAlignment.Stretch,BorderBrush=Brush.Parse("#454549"),BorderThickness=new Thickness(1),Child=_languages};Grid.SetRow(frame,2);root.Children.Add(frame);
+        var frame=new Border {MaxWidth=560,HorizontalAlignment=HorizontalAlignment.Stretch,Background=Brush.Parse("#101B28"),BorderBrush=Brush.Parse("#22395A"),BorderThickness=new Thickness(1),Child=_languages};Grid.SetRow(frame,2);root.Children.Add(frame);
+        // Fluent leaves ListBox/ListBoxItem backgrounds to its own theme brushes, which
+        // resolve to a warm grey that clashes with the Blue Archive navy. Paint them here.
+        _languages.Background=Brushes.Transparent;
         _languages.ItemTemplate=new FuncDataTemplate<Choice>((c,_)=>c is null ? new TextBlock() : new TextBlock {
             Text=c.Label,TextAlignment=TextAlignment.Center,TextWrapping=TextWrapping.Wrap,Margin=new Thickness(12,5),FontSize=16,
             FlowDirection=c.RightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight });
@@ -43,7 +46,12 @@ internal sealed class LanguageSelectionWindow : Window
             new Setter(ListBoxItem.PaddingProperty,new Thickness(0)),
             new Setter(ListBoxItem.MarginProperty,new Thickness(0)),
             new Setter(ListBoxItem.BorderThicknessProperty,new Thickness(1)),
-            new Setter(ListBoxItem.BorderBrushProperty,Brushes.Transparent)}});
+            new Setter(ListBoxItem.BorderBrushProperty,Brushes.Transparent),
+            new Setter(ListBoxItem.BackgroundProperty,Brushes.Transparent),
+            new Setter(ListBoxItem.ForegroundProperty,Brush.Parse("#C7D4E2"))}});
+        _languages.Styles.Add(new Avalonia.Styling.Style(s=>s.OfType<ListBoxItem>().Class(":pointerover")) {Setters={
+            new Setter(ListBoxItem.BackgroundProperty,Brush.Parse("#1F3350")),
+            new Setter(ListBoxItem.ForegroundProperty,Brushes.White)}});
         _languages.Styles.Add(new Avalonia.Styling.Style(s=>s.OfType<ListBoxItem>().Class(":selected")) {Setters={
             new Setter(ListBoxItem.BorderBrushProperty,Brushes.White),
             new Setter(ListBoxItem.BackgroundProperty,Brushes.Transparent)}});

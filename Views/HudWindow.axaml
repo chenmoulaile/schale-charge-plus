@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="160"
         x:Class="EndfieldChargePlus.Views.HudWindow"
         Width="1200" Height="160"
-        Title="Endfield Charge Plus"
+        Title="SCHALE Charge Plus"
         SystemDecorations="None"
         Background="Transparent"
         TransparencyLevelHint="Transparent"
@@ -21,6 +21,14 @@
         <ResourceInclude Source="avares://EndfieldChargePlus/Styles/Geometries.axaml"/>
         <ResourceInclude Source="avares://EndfieldChargePlus/Styles/HudTheme.axaml"/>
       </ResourceDictionary.MergedDictionaries>
+
+      <!-- Panel fill: darkens toward the lower right, so the bright hairline edge
+           reads as light falling on a glass plate. Replaced per character theme. -->
+      <LinearGradientBrush x:Key="Hud.PillFill" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Offset="0" Color="#FF1D3557"/>
+        <GradientStop Offset="0.55" Color="#FF152740"/>
+        <GradientStop Offset="1" Color="#FF0B1828"/>
+      </LinearGradientBrush>
     </ResourceDictionary>
   </Window.Resources>
 
@@ -42,7 +50,10 @@
         <Border x:Name="Pill"
                 Width="560" Height="60"
                 CornerRadius="30"
-                Background="#FF312F30"
+                Background="{DynamicResource Hud.PillFill}"
+                BorderBrush="{DynamicResource Hud.PillEdge}"
+                BorderThickness="1"
+                BoxShadow="0 0 22 0 #3D00D9FA"
                 ClipToBounds="True"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -60,7 +71,7 @@
 
             <Grid x:Name="RippleInnerHost" HorizontalAlignment="Center" VerticalAlignment="Center">
               <Grid.RenderTransform><TranslateTransform Y="16"/></Grid.RenderTransform>
-              <Ellipse x:Name="RippleInner" Width="160" Height="160" Fill="#FF656363"
+              <Ellipse x:Name="RippleInner" Width="160" Height="160" Fill="{DynamicResource Hud.Ripple}"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        Opacity="0" RenderTransformOrigin="50%,50%">
                 <Ellipse.RenderTransform><ScaleTransform ScaleX="0" ScaleY="0"/></Ellipse.RenderTransform>
@@ -69,7 +80,7 @@
 
             <Grid x:Name="RippleMidHost" HorizontalAlignment="Center" VerticalAlignment="Center">
               <Grid.RenderTransform><TranslateTransform Y="16"/></Grid.RenderTransform>
-              <Ellipse x:Name="RippleMid" Width="220" Height="220" Stroke="#FF656363" StrokeThickness="5"
+              <Ellipse x:Name="RippleMid" Width="220" Height="220" Stroke="{DynamicResource Hud.Ripple}" StrokeThickness="5"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        Opacity="0" RenderTransformOrigin="50%,50%">
                 <Ellipse.RenderTransform><ScaleTransform ScaleX="0" ScaleY="0"/></Ellipse.RenderTransform>
@@ -78,7 +89,7 @@
 
             <Grid x:Name="RippleOuterHost" HorizontalAlignment="Center" VerticalAlignment="Center">
               <Grid.RenderTransform><TranslateTransform Y="16"/></Grid.RenderTransform>
-              <Ellipse x:Name="RippleOuter" Width="280" Height="280" Stroke="#FF656363" StrokeThickness="3.5"
+              <Ellipse x:Name="RippleOuter" Width="280" Height="280" Stroke="{DynamicResource Hud.Ripple}" StrokeThickness="3.5"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        Opacity="0" RenderTransformOrigin="50%,50%">
                 <Ellipse.RenderTransform><ScaleTransform ScaleX="0" ScaleY="0"/></Ellipse.RenderTransform>
@@ -93,10 +104,11 @@
                     Opacity="0">
           <StackPanel.RenderTransform><TranslateTransform X="0"/></StackPanel.RenderTransform>
           <TextBlock x:Name="TagLineText"
-                     Text="/// SYSTEM MONITOR"
+                     Text="/// SCHALE MONITOR"
                      FontFamily="{DynamicResource Hud.FontFamilyNumeric}"
                      FontSize="9" FontWeight="Medium" LetterSpacing="2"
-                     HorizontalAlignment="Center" Foreground="White" Opacity="0.40"/>
+                     HorizontalAlignment="Center"
+                     Foreground="{DynamicResource Hud.Accent}" Opacity="0.44"/>
           <TextBlock x:Name="TitleText"
                      Text="系统状态"
                      FontFamily="{DynamicResource Hud.FontFamily}"
@@ -118,20 +130,46 @@
             </TransformGroup>
           </Grid.RenderTransform>
 
+          <!-- Blue Archive halo. The icon plate is the character's head; the ring
+               floats above it, flattened into perspective, wider than the plate so
+               it reads as a halo and not as a second border. Declared before the
+               plate so its lower arc passes behind the head. All three strokes
+               share one contour, which the character theme swaps out. -->
+          <Grid x:Name="HaloHost" Width="30" Height="9"
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                Margin="0,-3,0,0" IsHitTestVisible="False" Opacity="0">
+            <Grid.RenderTransform><ScaleTransform ScaleX="0.55" ScaleY="0.55"/></Grid.RenderTransform>
+            <Path x:Name="HaloGlowPath"
+                  Data="M1 4.2 A14 3.4 0 1 1 29 4.2 A14 3.4 0 1 1 1 4.2 Z"
+                  Stroke="{DynamicResource Hud.HaloAccent}"
+                  StrokeThickness="4.2" Opacity="0.18"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Path x:Name="HaloRing"
+                  Data="M1 4.2 A14 3.4 0 1 1 29 4.2 A14 3.4 0 1 1 1 4.2 Z"
+                  Stroke="{DynamicResource Hud.HaloAccent}"
+                  StrokeThickness="1.7" StrokeLineCap="Round" StrokeJoin="Round"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Path x:Name="HaloHighlight"
+                  Data="M1 4.2 A14 3.4 0 1 1 29 4.2 A14 3.4 0 1 1 1 4.2 Z"
+                  Stroke="{DynamicResource Hud.HaloGlow}"
+                  StrokeThickness="0.6" Opacity="0.85"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </Grid>
+
           <Grid x:Name="CircleForm">
-            <Ellipse Width="32" Height="32" Fill="#FFE9E7E4"/>
+            <Ellipse Width="32" Height="32" Fill="{DynamicResource Hud.IconPlate}"/>
             <PathIcon x:Name="CircleGlyph" Width="18" Height="18"
-                      Data="{DynamicResource Geo.Bolt}"
-                      Foreground="#FF141313"/>
+                      Data="{DynamicResource Geo.Halo}"
+                      Foreground="{DynamicResource Hud.BoltDark}"/>
           </Grid>
 
           <Grid x:Name="SquareForm" Opacity="0">
             <Border Width="18" Height="18" CornerRadius="4.5"
-                    Background="#FFE9E7E4"
+                    Background="{DynamicResource Hud.IconPlate}"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
               <PathIcon x:Name="SquareGlyph" Width="12" Height="12"
-                        Data="{DynamicResource Geo.Bolt}"
-                        Foreground="#FF141313"/>
+                        Data="{DynamicResource Geo.Halo.Small}"
+                        Foreground="{DynamicResource Hud.BoltDark}"/>
             </Border>
           </Grid>
         </Grid>
@@ -162,7 +200,7 @@
                        Text="/0"
                        FontFamily="{DynamicResource Hud.FontFamilyNumeric}"
                        FontSize="14" FontWeight="Medium"
-                       Foreground="White" Opacity="0.55" VerticalAlignment="Center"/>
+                       Foreground="White" Opacity="0.62" VerticalAlignment="Center"/>
           </StackPanel>
 
           <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center" Spacing="1">
@@ -174,37 +212,37 @@
                        Text="%"
                        FontFamily="{DynamicResource Hud.FontFamilyNumeric}"
                        FontSize="13" FontWeight="Medium"
-                       Foreground="White" Opacity="0.55" VerticalAlignment="Center"/>
+                       Foreground="White" Opacity="0.62" VerticalAlignment="Center"/>
           </StackPanel>
 
           <Grid x:Name="Badge" Grid.Column="7" Width="46" Height="46" VerticalAlignment="Center">
-            <Ellipse Width="46" Height="46" Fill="#FF262425"/>
+            <Ellipse Width="46" Height="46" Fill="{DynamicResource Hud.BadgeDark}"/>
             <Path x:Name="BadgeArc"
                   Width="46" Height="46"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   Stretch="None"
-                  Stroke="#FFC6CA4C" StrokeThickness="4.5" StrokeLineCap="Round"/>
+                  Stroke="{DynamicResource Hud.Accent}" StrokeThickness="4.5" StrokeLineCap="Round"/>
 
             <Grid x:Name="BadgeLaptop" Width="24" Height="17"
                   VerticalAlignment="Center" HorizontalAlignment="Center">
               <Border x:Name="LaptopScreen"
                       Width="17" Height="11.5" CornerRadius="1.5"
-                      BorderBrush="#FFC6CA4C" BorderThickness="2"
+                      BorderBrush="{DynamicResource Hud.Accent}" BorderThickness="2"
                       VerticalAlignment="Top" HorizontalAlignment="Center"/>
               <Border x:Name="LaptopBase"
                       Width="24" Height="3" CornerRadius="1.5"
-                      Background="#FFC6CA4C"
+                      Background="{DynamicResource Hud.Accent}"
                       VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
             <Border x:Name="BadgeElectrode" Width="9" Height="3" CornerRadius="1,1,0,0"
-                    Background="#FFC6CA4C"
+                    Background="{DynamicResource Hud.Accent}"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Margin="0,-14,0,0"/>
 
             <PathIcon x:Name="BadgeGlyph"
                       Width="21" Height="21"
                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                      Foreground="#FFC6CA4C"
+                      Foreground="{DynamicResource Hud.Accent}"
                       IsVisible="False"/>
           </Grid>
         </Grid>

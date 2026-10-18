@@ -15,7 +15,7 @@ public static class StartupManager
     // Must match the TaskId in the MSIX AppxManifest.xml.
     public const string StoreStartupTaskId = "EndfieldChargePlusStartup";
     private const string RunKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string ValueName = "Endfield Charge Plus";
+    private const string ValueName = "SCHALE Charge Plus";
     private const int ErrorInsufficientBuffer = 122;
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]

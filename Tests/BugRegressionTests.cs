@@ -76,7 +76,7 @@ internal class BugRegressionTests
         using var runtime=new CustomHudRuntime(hud);
         runtime.ApplySettings(settings);
         var window=new EndfieldChargePlus.Settings.SettingsWindow(settings,hud,runtime);
-        Check(window.Title=="Endfield Charge Plus v0.1.2 设置","Settings title contains the frozen version without parentheses.");
+        Check(window.Title=="SCHALE Charge Plus v0.1.2 设置","Settings title contains the frozen version without parentheses.");
         var panel=window.FindControl<Avalonia.Controls.StackPanel>("ExperimentalPanel")!;
         Check(panel.Children.Count>3,"Experimental tab contains a multi-instance editor.");
         Check(!window.FindControl<HudCustomizerView>("Customizer")!.FindControl<Avalonia.Controls.CheckBox>("PersistentClickSwitch")!.IsEnabled,"Click cycling is configurable only in persistent mode.");
@@ -88,7 +88,7 @@ internal class BugRegressionTests
         Check(view.FindControl<Avalonia.Controls.StackPanel>("FrameDisplayOptions")!.IsVisible && !view.FindControl<Avalonia.Controls.StackPanel>("FrameWindowOptions")!.IsVisible,"Selecting Display FPS exposes the corresponding display settings.");
         EndfieldChargePlus.LocalizationManager.SetLanguage(EndfieldChargePlus.AppLanguage.English);
         typeof(EndfieldChargePlus.Settings.SettingsWindow).GetMethod("ApplyLocalization",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance)!.Invoke(window,null);
-        Check(window.Title=="Endfield Charge Plus v0.1.2 Settings","English title has no parentheses.");
+        Check(window.Title=="SCHALE Charge Plus v0.1.2 Settings","English title has no parentheses.");
         window.Close(); hud.Close();
     }
 
@@ -138,10 +138,10 @@ internal class BugRegressionTests
         Check(TrayMenuPosition.Calculate(new PixelPoint(-10, 0), new PixelRect(-1920, 40, 1920, 1040), 200, 180).Y == 48, "Top taskbar with negative monitor origin.");
         Check(Math.Abs(WindowsCpuFrequency.EffectiveGhz(3000, 150) - 4.5) < 0.001, "ECP-30: turbo is relative to the counter's nominal baseline, never the WMI boosted limit.");
         Check(WindowsCpuFrequency.EffectiveGhz(3000, 0) == 3 && double.IsNaN(WindowsCpuFrequency.EffectiveGhz(0, 150)), "Missing frequency inputs do not fabricate a high clock.");
-        var rules = HudColorRuleParser.Parse("{cpu.usage} ≥ 80% => #FF4D4F\ncpu.usage < 80 => #C6CA4C");
+        var rules = HudColorRuleParser.Parse("{cpu.usage} ≥ 80% => #FF4D4F\ncpu.usage < 80 => #00D9FA");
         var profile = new HudProfile { ColorRules = rules };
         Check(HudProfileRenderer.Render(profile, new Dictionary<string, object?> { ["cpu.usage"] = 80 }).AccentColor == "#FF4D4F", "ECP-22: inclusive threshold with template syntax.");
-        Check(HudProfileRenderer.Render(profile, new Dictionary<string, object?> { ["cpu.usage"] = 79 }).AccentColor == "#C6CA4C", "ECP-22: lower threshold.");
+        Check(HudProfileRenderer.Render(profile, new Dictionary<string, object?> { ["cpu.usage"] = 79 }).AccentColor == "#00D9FA", "ECP-22: lower threshold.");
         Check(HudProfileRenderer.Render(profile, new Dictionary<string, object?>()).AccentColor == profile.AccentColor, "Missing measurements must not match rules.");
         bool rejected = false;
         try { HudColorRuleParser.Parse("cpu.usage > 80 => #1234567"); } catch (FormatException) { rejected = true; }

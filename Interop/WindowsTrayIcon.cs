@@ -93,7 +93,7 @@ internal sealed class WindowsTrayIcon : IDisposable
         _hwnd = CreateWindowExW(
             0,
             _className,
-            "Endfield Charge Plus Tray",
+            "SCHALE Charge Plus Tray",
             0,
             0, 0, 0, 0,
             HwndMessage,
@@ -156,7 +156,7 @@ internal sealed class WindowsTrayIcon : IDisposable
         uFlags = NifMessage | NifIcon | NifTip,
         uCallbackMessage = TrayCallbackMessage,
         hIcon = _hIcon,
-        szTip = string.IsNullOrWhiteSpace(tooltip) ? "Endfield Charge Plus" : tooltip,
+        szTip = string.IsNullOrWhiteSpace(tooltip) ? "SCHALE Charge Plus" : tooltip,
         szInfo = string.Empty,
         szInfoTitle = string.Empty,
     };
@@ -187,7 +187,7 @@ internal sealed class WindowsTrayIcon : IDisposable
         if (_disposed || !_added || _hwnd == IntPtr.Zero)
             return;
 
-        var data = CreateNotifyData("Endfield Charge Plus");
+        var data = CreateNotifyData("SCHALE Charge Plus");
         data.uFlags = NifInfo;
         data.szInfoTitle = TrimForNotify(title, 63);
         data.szInfo = TrimForNotify(message, 255);
@@ -211,7 +211,7 @@ internal sealed class WindowsTrayIcon : IDisposable
 
         if (_added && _hwnd != IntPtr.Zero)
         {
-            var data = CreateNotifyData("Endfield Charge Plus");
+            var data = CreateNotifyData("SCHALE Charge Plus");
             try { Shell_NotifyIconW(NimDelete, ref data); }
             catch { }
             _added = false;

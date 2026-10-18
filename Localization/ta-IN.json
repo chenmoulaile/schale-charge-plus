@@ -35,7 +35,7 @@
   "Start at login": "உள்நுழையும்போது தொடங்கு",
   "Start with Linux": "Linux உடன் தொடங்கு",
   "Start with macOS": "macOS உடன் தொடங்கு",
-  "Start Endfield Charge Plus after sign-in.": "உள்நுழைந்த பின் Endfield Charge Plus-ஐத் தொடங்கு.",
+  "Start SCHALE Charge Plus after sign-in.": "உள்நுழைந்த பின் SCHALE Charge Plus-ஐத் தொடங்கு.",
   "On battery": "மின்கலத்தில்",
   "AC power": "மின் இணைப்பில்",
   "Quit": "வெளியேறு",
@@ -195,7 +195,7 @@
   "Shorter intervals sample faster and use more resources. Clocks update each second; external APIs retain their own refresh intervals.": "குறைந்த இடைவெளி வேகமாக மாதிரி எடுக்கும்; அதிக வளங்களையும் பயன்படுத்தும். கடிகாரங்கள் நொடிக்கொரு முறை புதுப்பிக்கும்; வெளிப்புற API-கள் தமது இடைவெளியைப் பின்பற்றும்.",
   "Simple: quickly reveal the final HUD.": "எளிமையானது: இறுதி HUD-ஐ விரைவாகக் காட்டு.",
   "Simple: retract the previous item, then quickly reveal the next.": "எளிமையானது: முந்தையதைக் குறுக்கி அடுத்ததை விரைவாகக் காட்டு.",
-  "Start Endfield Charge Plus after Windows sign-in.": "Windows-இல் உள்நுழைந்த பின் Endfield Charge Plus-ஐத் தொடங்கு.",
+  "Start SCHALE Charge Plus after Windows sign-in.": "Windows-இல் உள்நுழைந்த பின் SCHALE Charge Plus-ஐத் தொடங்கு.",
   "Try a variable key or feature name, or clear the search.": "மாறியின் பெயர் அல்லது வசதியின் பெயரைத் தேடவும்; அல்லது தேடலை அழிக்கவும்.",
   "Use Ctrl or Alt, optionally Shift, with a letter, digit or F1–F24 (except F12). Save to apply; leave blank to disable.": "Ctrl அல்லது Alt உடன் எழுத்து, எண் அல்லது F1–F24 (F12 தவிர) பயன்படுத்தவும்; விருப்பமாக Shift சேர்க்கலாம். சேமித்தால் செயல்படும்; காலியாக விட்டால் முடங்கும்.",
   "Each HUD has independent profiles, cycling, font, size, visibility and target display. Select an instance and adjust it in the first two tabs; Locate jumps to position settings. An orange outline and Currently editing label remain on the selected HUD while Settings is open. Save & Apply after adding or removing an instance; closing Settings clears the outline. Sampling interval and click switching are shared by all HUDs and can be changed while editing any instance; language and startup are global. Up to 16 HUDs.": "ஒவ்வொரு HUD-க்கும் தனிச் சுயவிவரங்கள், சுழற்சி, எழுத்துரு, அளவு, தெரிவுநிலை மற்றும் இலக்குத் திரை உள்ளன. ஒன்றைத் தேர்ந்தெடுத்து முதல் இரண்டு தாவல்களில் அமைக்கவும்; கண்டறியும் பொத்தான் இட அமைப்பைத் திறக்கும். அமைப்புகள் திறந்திருக்கும்போது தேர்ந்தெடுத்த HUD-க்கு ஆரஞ்சு விளிம்பும் தற்போதைய திருத்தக் குறியும் இருக்கும். HUD-ஐச் சேர்த்தோ நீக்கியோ பின் சேமித்துப் பயன்படுத்தவும்; அமைப்புகளை மூடினால் விளிம்பு மறையும். மாதிரி இடைவெளியும் சொடுக்கி மாற்றும் வசதியும் எல்லா HUD-களுக்கும் பொதுவானவை; எதைத் திருத்தும்போதும் மாற்றலாம். மொழியும் தொடக்க அமைப்பும் பொதுவானவை. அதிகபட்சம் 16 HUD-கள்.",
@@ -206,6 +206,6 @@
   "Save & Apply to disable the shortcut.": "விசைச் சேர்க்கையை முடக்கச் சேமித்துப் பயன்படுத்தவும்.",
   "Save & Apply to enable this shortcut.": "இந்த விசைச் சேர்க்கையை இயக்கச் சேமித்துப் பயன்படுத்தவும்.",
   "Use Ctrl or Alt with a letter, digit or function key (except F12).": "Ctrl அல்லது Alt உடன் எழுத்து, எண் அல்லது செயல்பாட்டு விசையைப் (F12 தவிர) பயன்படுத்தவும்.",
-  "Endfield Charge Plus Settings": "Endfield Charge Plus · அமைப்புகள்",
+  "SCHALE Charge Plus Settings": "SCHALE Charge Plus · அமைப்புகள்",
   "{0} v{1} Settings": "{0} v{1} · அமைப்புகள்"
 }

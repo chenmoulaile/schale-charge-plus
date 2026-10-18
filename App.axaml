@@ -2,6 +2,110 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="EndfieldChargePlus.App"
              RequestedThemeVariant="Dark">
+  <Application.Resources>
+    <!--
+      Blue Archive surface ramp.
+
+      Fluent's own control themes pick their surface colours through
+      DynamicResource (verified against Avalonia 11.2.1
+      src/Avalonia.Themes.Fluent/Controls/*.xaml), so redefining the brush
+      keys here reaches every template part: popup borders, list rows,
+      flyouts, scrollbars. Redefining only the underlying *Color* keys would
+      not work, because the Fluent dictionaries reference those with
+      StaticResource and therefore never re-resolve.
+    -->
+    <ResourceDictionary>
+      <Color x:Key="SystemAccentColor">#FF00D9FA</Color>
+
+      <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="SystemControlFocusVisualPrimaryBrush" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="SystemControlRevealFocusVisualBrush" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="SystemControlFocusVisualSecondaryBrush" Color="#FF0A1119" />
+
+      <SolidColorBrush x:Key="SystemControlTransientBackgroundBrush" Color="#FF13202F" />
+      <SolidColorBrush x:Key="SystemControlTransientBorderBrush" Color="#FF3C5F8B" />
+      <SolidColorBrush x:Key="SystemControlBackgroundChromeMediumLowBrush" Color="#FF101B28" />
+      <SolidColorBrush x:Key="SystemControlBackgroundChromeMediumBrush" Color="#FF152334" />
+      <SolidColorBrush x:Key="SystemControlBackgroundChromeLowBrush" Color="#FF0C1520" />
+      <SolidColorBrush x:Key="SystemControlBackgroundChromeHighBrush" Color="#FF22395A" />
+      <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush" Color="#FF0A1119" />
+      <SolidColorBrush x:Key="SystemControlBackgroundAltMediumBrush" Color="#99101B28" />
+      <SolidColorBrush x:Key="SystemControlBackgroundAltMediumLowBrush" Color="#66101B28" />
+      <SolidColorBrush x:Key="SystemControlBackgroundBaseLowBrush" Color="#33FFFFFF" />
+      <SolidColorBrush x:Key="SystemControlBackgroundBaseMediumLowBrush" Color="#66FFFFFF" />
+      <SolidColorBrush x:Key="SystemControlBackgroundListLowBrush" Color="#1A00D9FA" />
+      <SolidColorBrush x:Key="SystemControlBackgroundListMediumBrush" Color="#3300D9FA" />
+
+      <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FFDCE5EE" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumHighBrush" Color="#FFA6BACF" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="#FF7995BA" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumLowBrush" Color="#FF556F8F" />
+      <SolidColorBrush x:Key="SystemControlForegroundChromeDisabledLowBrush" Color="#FF556F8F" />
+      <SolidColorBrush x:Key="SystemControlDisabledBaseMediumLowBrush" Color="#FF496E9B" />
+      <SolidColorBrush x:Key="SystemControlPageTextBaseHighBrush" Color="#FFDCE5EE" />
+      <SolidColorBrush x:Key="SystemControlPageTextBaseMediumBrush" Color="#FF7995BA" />
+      <SolidColorBrush x:Key="SystemControlDescriptionTextForegroundBrush" Color="#FF7995BA" />
+      <SolidColorBrush x:Key="SystemControlErrorTextForegroundBrush" Color="#FFFF4D4F" />
+
+      <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="#1A00D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightListMediumBrush" Color="#3300D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush" Color="#3300D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush" Color="#4D00D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush" Color="#6600D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightAltListAccentLowBrush" Color="#3300D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightAltListAccentMediumBrush" Color="#4D00D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightAltListAccentHighBrush" Color="#6600D9FA" />
+      <SolidColorBrush x:Key="SystemControlHighlightAltBaseHighBrush" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="SystemControlHighlightBaseHighBrush" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="SystemControlHighlightBaseMediumHighBrush" Color="#FFA6BACF" />
+      <SolidColorBrush x:Key="SystemControlHighlightBaseMediumBrush" Color="#FF7995BA" />
+      <SolidColorBrush x:Key="SystemControlHighlightBaseMediumLowBrush" Color="#FF556F8F" />
+
+      <SolidColorBrush x:Key="ComboBoxBackground" Color="#FF13202F" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#FF1F3350" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundPressed" Color="#FF22395A" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundDisabled" Color="#FF101B28" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundUnfocused" Color="#FF0E3A4A" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundBorderBrushUnfocused" Color="#FF3C5F8B" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundBorderBrushFocused" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#FF3C5F8B" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver" Color="#FF7592B8" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushPressed" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushDisabled" Color="#FF274063" />
+      <SolidColorBrush x:Key="ComboBoxForeground" Color="#FFDCE5EE" />
+      <SolidColorBrush x:Key="ComboBoxForegroundFocused" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="ComboBoxForegroundFocusedPressed" Color="#FF9BF0FF" />
+      <SolidColorBrush x:Key="ComboBoxForegroundDisabled" Color="#FF496E9B" />
+      <SolidColorBrush x:Key="ComboBoxPlaceHolderForeground" Color="#FF556F8F" />
+      <SolidColorBrush x:Key="ComboBoxPlaceHolderForegroundFocusedPressed" Color="#FF9BF0FF" />
+      <SolidColorBrush x:Key="ComboBoxDropDownGlyphForeground" Color="#FF7995BA" />
+      <SolidColorBrush x:Key="ComboBoxDropDownGlyphForegroundFocused" Color="#FF00D9FA" />
+      <SolidColorBrush x:Key="ComboBoxDropDownGlyphForegroundFocusedPressed" Color="#FF9BF0FF" />
+      <SolidColorBrush x:Key="ComboBoxDropDownGlyphForegroundDisabled" Color="#FF496E9B" />
+      <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#FF13202F" />
+      <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#FF3C5F8B" />
+
+      <SolidColorBrush x:Key="ComboBoxItemBackground" Color="Transparent" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundPointerOver" Color="#FF263D60" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundPressed" Color="#FF2E4A70" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundDisabled" Color="Transparent" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundSelected" Color="#FF0E3A4A" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPointerOver" Color="#FF14485C" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPressed" Color="#FF17505F" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedDisabled" Color="Transparent" />
+      <SolidColorBrush x:Key="ComboBoxItemForeground" Color="#FFD8E2EC" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundPointerOver" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundPressed" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="#FF9BF0FF" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPointerOver" Color="#FF9BF0FF" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPressed" Color="#FF9BF0FF" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundDisabled" Color="#FF496E9B" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedDisabled" Color="#FF496E9B" />
+    </ResourceDictionary>
+  </Application.Resources>
+
   <Application.Styles>
     <FluentTheme />
 
@@ -12,89 +116,128 @@
       still override these defaults.
     -->
     <Style Selector="ComboBox">
-      <Setter Property="Background" Value="#29292C"/>
-      <Setter Property="Foreground" Value="#F4F4F6"/>
-      <Setter Property="BorderBrush" Value="#686870"/>
+      <Setter Property="Background" Value="#13202F"/>
+      <Setter Property="Foreground" Value="#DCE5EE"/>
+      <Setter Property="BorderBrush" Value="#3C5F8B"/>
       <Setter Property="BorderThickness" Value="1"/>
     </Style>
     <Style Selector="ComboBox:pointerover">
-      <Setter Property="Background" Value="#303034"/>
-      <Setter Property="BorderBrush" Value="#A5A5AD"/>
+      <Setter Property="Background" Value="#1F3350"/>
+      <Setter Property="BorderBrush" Value="#7592B8"/>
       <Setter Property="Foreground" Value="#FFFFFF"/>
     </Style>
     <Style Selector="ComboBox:focus">
-      <Setter Property="BorderBrush" Value="#C6CA4C"/>
+      <Setter Property="BorderBrush" Value="#00D9FA"/>
       <Setter Property="Foreground" Value="#FFFFFF"/>
     </Style>
     <Style Selector="ComboBox:disabled">
-      <Setter Property="Background" Value="#252527"/>
-      <Setter Property="BorderBrush" Value="#3A3A3E"/>
-      <Setter Property="Foreground" Value="#76767C"/>
+      <Setter Property="Background" Value="#16263A"/>
+      <Setter Property="BorderBrush" Value="#274063"/>
+      <Setter Property="Foreground" Value="#496E9B"/>
       <Setter Property="Opacity" Value="0.55"/>
     </Style>
 
     <Style Selector="ComboBoxItem">
-      <Setter Property="Foreground" Value="#F0F0F2"/>
-      <Setter Property="Background" Value="#242426"/>
+      <Setter Property="Foreground" Value="#D8E2EC"/>
+      <Setter Property="Background" Value="#152334"/>
     </Style>
     <Style Selector="ComboBoxItem:pointerover">
       <Setter Property="Foreground" Value="#FFFFFF"/>
-      <Setter Property="Background" Value="#38383D"/>
+      <Setter Property="Background" Value="#263D60"/>
     </Style>
     <Style Selector="ComboBoxItem:selected">
-      <Setter Property="Foreground" Value="#F4F59A"/>
-      <Setter Property="Background" Value="#414128"/>
+      <Setter Property="Foreground" Value="#9BF0FF"/>
+      <Setter Property="Background" Value="#0E3A4A"/>
     </Style>
 
     <Style Selector="TextBox">
-      <Setter Property="Background" Value="#252527"/>
-      <Setter Property="Foreground" Value="#F4F4F6"/>
-      <Setter Property="BorderBrush" Value="#5E5E65"/>
+      <Setter Property="Background" Value="#16263A"/>
+      <Setter Property="Foreground" Value="#DCE5EE"/>
+      <Setter Property="BorderBrush" Value="#375881"/>
       <Setter Property="BorderThickness" Value="1"/>
     </Style>
     <Style Selector="TextBox:pointerover">
-      <Setter Property="BorderBrush" Value="#898991"/>
+      <Setter Property="BorderBrush" Value="#587CA8"/>
     </Style>
     <Style Selector="TextBox:focus">
-      <Setter Property="BorderBrush" Value="#C6CA4C"/>
+      <Setter Property="BorderBrush" Value="#00D9FA"/>
     </Style>
     <Style Selector="TextBox:disabled">
-      <Setter Property="Background" Value="#252527"/>
-      <Setter Property="BorderBrush" Value="#3A3A3E"/>
-      <Setter Property="Foreground" Value="#76767C"/>
+      <Setter Property="Background" Value="#16263A"/>
+      <Setter Property="BorderBrush" Value="#274063"/>
+      <Setter Property="Foreground" Value="#496E9B"/>
       <Setter Property="Opacity" Value="0.55"/>
     </Style>
 
     <Style Selector="NumericUpDown">
-      <Setter Property="Background" Value="#252527"/>
-      <Setter Property="Foreground" Value="#F4F4F6"/>
-      <Setter Property="BorderBrush" Value="#5E5E65"/>
+      <Setter Property="Background" Value="#16263A"/>
+      <Setter Property="Foreground" Value="#DCE5EE"/>
+      <Setter Property="BorderBrush" Value="#375881"/>
       <Setter Property="BorderThickness" Value="1"/>
     </Style>
     <Style Selector="NumericUpDown:pointerover">
-      <Setter Property="BorderBrush" Value="#898991"/>
+      <Setter Property="BorderBrush" Value="#587CA8"/>
     </Style>
     <Style Selector="NumericUpDown:focus">
-      <Setter Property="BorderBrush" Value="#C6CA4C"/>
+      <Setter Property="BorderBrush" Value="#00D9FA"/>
     </Style>
     <Style Selector="NumericUpDown:disabled">
-      <Setter Property="Background" Value="#252527"/>
-      <Setter Property="BorderBrush" Value="#3A3A3E"/>
-      <Setter Property="Foreground" Value="#76767C"/>
+      <Setter Property="Background" Value="#16263A"/>
+      <Setter Property="BorderBrush" Value="#274063"/>
+      <Setter Property="Foreground" Value="#496E9B"/>
       <Setter Property="Opacity" Value="0.55"/>
     </Style>
 
+    <!--
+      List surfaces. Language selection and the rotation queue both use bare
+      ListBox controls, which the Fluent theme paints with the transient
+      chrome brushes; these keep them on the same navy ramp as the cards.
+    -->
+    <Style Selector="ListBox">
+      <Setter Property="Background" Value="#13202F"/>
+      <Setter Property="BorderBrush" Value="#22395A"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+    <Style Selector="ListBoxItem">
+      <Setter Property="Foreground" Value="#D8E2EC"/>
+      <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style Selector="ListBoxItem:pointerover">
+      <Setter Property="Foreground" Value="#FFFFFF"/>
+      <Setter Property="Background" Value="#263D60"/>
+    </Style>
+    <Style Selector="ListBoxItem:selected">
+      <Setter Property="Foreground" Value="#9BF0FF"/>
+      <Setter Property="Background" Value="#0E3A4A"/>
+    </Style>
+
+    <Style Selector="TabItem">
+      <Setter Property="Foreground" Value="#A6BACF"/>
+    </Style>
+    <Style Selector="TabItem:selected">
+      <Setter Property="Foreground" Value="#00D9FA"/>
+    </Style>
+
     <Style Selector="Button">
-      <Setter Property="Foreground" Value="#F4F4F6"/>
-      <Setter Property="BorderBrush" Value="#595960"/>
+      <Setter Property="Background" Value="#1A2C42"/>
+      <Setter Property="Foreground" Value="#DCE5EE"/>
+      <Setter Property="BorderBrush" Value="#35547E"/>
       <Setter Property="BorderThickness" Value="1"/>
     </Style>
     <Style Selector="Button:pointerover">
-      <Setter Property="BorderBrush" Value="#8A8A92"/>
+      <Setter Property="Background" Value="#22395A"/>
+      <Setter Property="Foreground" Value="#FFFFFF"/>
+      <Setter Property="BorderBrush" Value="#597DA9"/>
+    </Style>
+    <Style Selector="Button:pressed">
+      <Setter Property="Background" Value="#0E3A4A"/>
+      <Setter Property="BorderBrush" Value="#00D9FA"/>
     </Style>
     <Style Selector="Button:disabled">
-      <Setter Property="Foreground" Value="#77777D"/>
-      <Setter Property="BorderBrush" Value="#3A3A3E"/>
+      <Setter Property="Background" Value="#101B28"/>
+      <Setter Property="Foreground" Value="#4A6F9C"/>
+      <Setter Property="BorderBrush" Value="#274063"/>
       <Setter Property="Opacity" Value="0.45"/>
     </Style>
   </Application.Styles>

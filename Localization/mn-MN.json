@@ -35,7 +35,7 @@
   "Start at login": "Нэвтрэхэд эхлүүлэх",
   "Start with Linux": "Linux-тэй хамт эхлүүлэх",
   "Start with macOS": "macOS-той хамт эхлүүлэх",
-  "Start Endfield Charge Plus after sign-in.": "Нэвтэрсний дараа Endfield Charge Plus-ийг эхлүүлнэ.",
+  "Start SCHALE Charge Plus after sign-in.": "Нэвтэрсний дараа SCHALE Charge Plus-ийг эхлүүлнэ.",
   "On battery": "Батарейгаар ажиллаж байна",
   "AC power": "Цахилгаанд холбогдсон",
   "Quit": "Гарах",
@@ -195,7 +195,7 @@
   "Shorter intervals sample faster and use more resources. Clocks update each second; external APIs retain their own refresh intervals.": "Зайг багасгавал хэмжилт хурдсаж, нөөцийн хэрэглээ нэмэгдэнэ. Цаг секунд бүрд, гадаад API өөрийн давтамжаар шинэчлэгдэнэ.",
   "Simple: quickly reveal the final HUD.": "Энгийн: эцсийн HUD-ийг хурдан харуулна.",
   "Simple: retract the previous item, then quickly reveal the next.": "Энгийн: өмнөхийг хураагаад дараагийнхыг хурдан харуулна.",
-  "Start Endfield Charge Plus after Windows sign-in.": "Windows-д нэвтэрсний дараа Endfield Charge Plus-ийг эхлүүлнэ.",
+  "Start SCHALE Charge Plus after Windows sign-in.": "Windows-д нэвтэрсний дараа SCHALE Charge Plus-ийг эхлүүлнэ.",
   "Try a variable key or feature name, or clear the search.": "Хувьсагч эсвэл үйлдлийн нэрээр хайх, эсвэл хайлтыг арилгах.",
   "Use Ctrl or Alt, optionally Shift, with a letter, digit or F1–F24 (except F12). Save to apply; leave blank to disable.": "Ctrl эсвэл Alt, шаардлагатай бол Shift-ийг үсэг, тоо эсвэл F1–F24 (F12-оос бусад)-тэй хослуулна. Хадгалж хэрэглэнэ. Хоосон орхивол товчлол унтарна.",
   "Each HUD has independent profiles, cycling, font, size, visibility and target display. Select an instance and adjust it in the first two tabs; Locate jumps to position settings. An orange outline and Currently editing label remain on the selected HUD while Settings is open. Save & Apply after adding or removing an instance; closing Settings clears the outline. Sampling interval and click switching are shared by all HUDs and can be changed while editing any instance; language and startup are global. Up to 16 HUDs.": "HUD бүр өөрийн загвар, сэлгэлтийн дараалал, фонт, хэмжээ, харагдах төлөв, зорилтот дэлгэцтэй. HUD сонгоод эхний хоёр табд тохируулна. Байрлалыг олох товч байрлалын тохиргоог нээнэ. Тохиргоо нээлттэй үед сонгосон HUD улбар хүрээтэй, засаж буй гэсэн тэмдэгтэй байна. HUD нэмэх эсвэл устгасны дараа хадгалж хэрэглэнэ. Тохиргоог хаахад хүрээ арилна. Хэмжилтийн зай ба дарж сэлгэх тохиргоо бүх HUD-д нийтлэг бөгөөд аль ч HUD-ийг засахдаа өөрчилж болно. Хэл, автоматаар эхлүүлэх тохиргоо мөн нийтлэг. 16 хүртэл HUD дэмжинэ.",
@@ -206,6 +206,6 @@
   "Save & Apply to disable the shortcut.": "Товчлолыг унтраахын тулд хадгалж хэрэглэнэ үү.",
   "Save & Apply to enable this shortcut.": "Энэ товчлолыг асаахын тулд хадгалж хэрэглэнэ үү.",
   "Use Ctrl or Alt with a letter, digit or function key (except F12).": "Ctrl эсвэл Alt-ийг үсэг, тоо эсвэл үйлдлийн товчтой (F12-оос бусад) хослуулна уу.",
-  "Endfield Charge Plus Settings": "Endfield Charge Plus · Тохиргоо",
+  "SCHALE Charge Plus Settings": "SCHALE Charge Plus · Тохиргоо",
   "{0} v{1} Settings": "{0} v{1} · Тохиргоо"
 }

@@ -9,7 +9,7 @@ public sealed record HudColorRule
     public string Variable { get; init; } = "";
     public string Operator { get; init; } = ">=";
     public double Value { get; init; }
-    public string Color { get; init; } = "#C6CA4C";
+    public string Color { get; init; } = "#00D9FA";
 }
 
 public sealed record HudProfile
@@ -26,7 +26,7 @@ public sealed record HudProfile
     public string Name { get; init; } = "自定义 HUD";
     public string AnimationMode { get; init; } = "Full"; // Simple | Full
 
-    public string TaglineTemplate { get; init; } = "/// SYSTEM MONITOR";
+    public string TaglineTemplate { get; init; } = "/// SCHALE MONITOR";
     public string TitleTemplate { get; init; } = "系统状态";
     public string PrimaryTemplate { get; init; } = "{cpu.frequency_ghz|0.00}";
     public string SecondaryTemplate { get; init; } = " GHz";
@@ -39,7 +39,7 @@ public sealed record HudProfile
 
     public string LeftIcon { get; init; } = "cpu";
     public string RightIcon { get; init; } = "cpu";
-    public string AccentColor { get; init; } = "#C6CA4C";
+    public string AccentColor { get; init; } = "#00D9FA";
     public List<HudColorRule> ColorRules { get; init; } = new();
 
     // Time category option: day progress by default; when enabled, show the remaining proportion to the next daily target time.

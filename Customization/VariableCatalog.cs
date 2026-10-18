@@ -243,7 +243,7 @@ public static class VariableCatalog
         V("system.os_version", "操作系统版本", "系统", "Windows 操作系统版本号。", "文本", use: "左侧信息", formats: "无需格式化"),
         V("system.os_build", "Windows Build", "系统", "当前 Windows Build 号。", "整数", use: "左侧信息", formats: "0"),
         V("system.os_architecture", "操作系统架构", "系统", "当前 Windows 架构，如 X64 / Arm64。", "文本", use: "左侧信息", formats: "无需格式化"),
-        V("system.process_architecture", "应用进程架构", "系统", "Endfield Charge Plus 当前进程架构。", "文本", use: "左侧信息", formats: "无需格式化"),
+        V("system.process_architecture", "应用进程架构", "系统", "SCHALE Charge Plus 当前进程架构。", "文本", use: "左侧信息", formats: "无需格式化"),
         V("system.framework_version", ".NET 版本", "系统", "当前进程使用的 .NET FrameworkDescription。", "文本", use: "左侧信息", formats: "无需格式化"),
         V("system.processor_count", "系统逻辑处理器数", "系统", "Environment.ProcessorCount。", "整数", "个", "左侧信息", "0"),
         V("system.timezone_id", "时区 ID", "系统", "当前本地时区 ID。", "文本", use: "标题 / 左侧信息", formats: "无需格式化"),
@@ -252,13 +252,13 @@ public static class VariableCatalog
         V("system.culture", "系统区域语言", "系统", "当前进程文化区域名称，如 zh-CN。", "文本", use: "左侧信息", formats: "无需格式化"),
 
         // ===== 应用进程 =====
-        V("app.name", "应用进程名称", "ECP 应用", "当前 Endfield Charge Plus 进程名称。", "文本", use: "标题 / 左侧信息", formats: "无需格式化"),
-        V("app.version", "应用版本", "ECP 应用", "Endfield Charge Plus 产品版本。", "文本", use: "标题 / 左侧信息", formats: "无需格式化"),
+        V("app.name", "应用进程名称", "ECP 应用", "当前 SCHALE Charge Plus 进程名称。", "文本", use: "标题 / 左侧信息", formats: "无需格式化"),
+        V("app.version", "应用版本", "ECP 应用", "SCHALE Charge Plus 产品版本。", "文本", use: "标题 / 左侧信息", formats: "无需格式化"),
         V("app.pid", "应用 PID", "ECP 应用", "当前应用进程 ID。", "整数", use: "左侧信息", formats: "0"),
         V("app.start_time", "应用启动时间", "ECP 应用", "当前应用进程启动时间。", "文本", use: "左侧信息", formats: "无需格式化"),
         V("app.uptime_seconds", "应用运行时间", "ECP 应用", "当前应用进程已运行的秒数。", unit: "秒", use: "左侧信息", formats: "duration"),
         V("app.uptime_text", "应用运行时间文字", "ECP 应用", "当前应用运行时间的可读文字。", "文本", use: "左侧信息", formats: "无需格式化"),
-        V("app.working_set_bytes", "应用工作集", "ECP 应用", "Endfield Charge Plus 当前工作集内存。", unit: "Byte", use: "左侧主值", formats: "mb:1 / bytes"),
+        V("app.working_set_bytes", "应用工作集", "ECP 应用", "SCHALE Charge Plus 当前工作集内存。", unit: "Byte", use: "左侧主值", formats: "mb:1 / bytes"),
         V("app.private_memory_bytes", "应用专用内存", "ECP 应用", "当前应用进程专用内存。", unit: "Byte", use: "左侧信息", formats: "mb:1 / bytes"),
         V("app.virtual_memory_bytes", "应用虚拟内存", "ECP 应用", "当前应用进程虚拟内存大小。", unit: "Byte", use: "左侧信息", formats: "mb:1 / bytes"),
         V("app.thread_count", "应用线程数", "ECP 应用", "当前应用进程线程数量。", "整数", "个", "左侧信息", "0"),
@@ -445,10 +445,10 @@ public static class VariableCatalog
         V("process.gpu.top.usage", "最高进程 GPU 使用率", "进程", "GPU Engine 性能计数器汇总后的进程 GPU 使用率。", unit: "%", use: "右侧状态 / 圆环", formats: "0.0"),
 
         // ===== 软件自身进阶 =====
-        V("app.theme", "应用主题", "ECP 应用", "当前 Endfield Charge Plus 使用的主题。", "文本", use: "左侧信息", formats: "无需格式化"),
+        V("app.theme", "应用主题", "ECP 应用", "当前 SCHALE Charge Plus 使用的主题。", "文本", use: "左侧信息", formats: "无需格式化"),
         V("app.preset_name", "当前方案名称", "ECP 应用", "当前选中的 HUD 方案显示名称。", "文本", use: "标题 / 左侧信息", formats: "无需格式化"),
         V("app.active_profile", "当前方案 ID", "ECP 应用", "当前 HUD 方案内部 ID。", "文本", use: "条件", formats: "无需格式化"),
-        V("app.gpu_usage", "本程序 GPU 使用率", "ECP 应用", "GPU Engine 性能计数器中当前 Endfield Charge Plus 进程的利用率。", unit: "%", use: "右侧状态 / 圆环", formats: "0.0"),
+        V("app.gpu_usage", "本程序 GPU 使用率", "ECP 应用", "GPU Engine 性能计数器中当前 SCHALE Charge Plus 进程的利用率。", unit: "%", use: "右侧状态 / 圆环", formats: "0.0"),
 
         // ===== 显示器进阶 =====
         V("display.primary.name", "主显示设备名称", "显示器", "Windows 当前活动显示设备名称。", "文本", use: "左侧信息", formats: "无需格式化"),

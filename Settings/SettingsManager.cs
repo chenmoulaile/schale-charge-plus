@@ -171,6 +171,7 @@ public static class SettingsManager
                     Name=string.IsNullOrWhiteSpace(i.Name) ? "HUD" : i.Name.Trim(),
                     Settings=Normalize((i.Settings ?? new()) with { MultiHudEnabled=false, HudInstances=new() }) }).ToList(),
             HudFontFamily = (settings.HudFontFamily ?? "").Trim(),
+            HudThemeId = HudThemeCatalog.NormalizeId(settings.HudThemeId),
             HudToggleHotkey = HudHotkeyGesture.TryParse(settings.HudToggleHotkey, out var hotkey) ? hotkey.Text : "",
             HudHotkeyShowAnimation = string.Equals(settings.HudHotkeyShowAnimation,"Simple",StringComparison.OrdinalIgnoreCase) ? "Simple" : "Full",
             HotZonePosition=(HudPosition)Math.Clamp((int)settings.HotZonePosition,0,8),

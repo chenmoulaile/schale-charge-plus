@@ -47,6 +47,13 @@ public sealed record HudThemeDefinition
     /// </summary>
     public required string HaloPath { get; init; }
 
+    // New background system properties
+    public required bool HasBackground { get; init; }
+    public required string? BackgroundImageUri { get; init; }
+    public required double BackgroundOpacity { get; init; }
+    public required bool UseGradientOverlay { get; init; }
+    public required Color GradientOverlayColor { get; init; }
+
     public string Display => $"{NameZh}  ·  {NameEn}";
 }
 
@@ -94,6 +101,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#102A46"),
             Ripple = Color.Parse("#2E7FB4"),
             HaloPath = HaloRingPath,
+            HasBackground = false,
+            BackgroundImageUri = null,
+            BackgroundOpacity = 1.0,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#401D3557"),
         },
         new HudThemeDefinition
         {
@@ -113,6 +125,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#2C0E38"),
             Ripple = Color.Parse("#8E32B0"),
             HaloPath = HaloCrownPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Hina/background_hina.mp4",
+            BackgroundOpacity = 0.25,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#6017061D"),
         },
         new HudThemeDefinition
         {
@@ -132,6 +149,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#0A3352"),
             Ripple = Color.Parse("#1E7FB4"),
             HaloPath = HaloCrownPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Hina/background_swimsuit.mp4",
+            BackgroundOpacity = 0.3,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#5005202F"),
         },
         new HudThemeDefinition
         {
@@ -151,6 +173,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#241A4A"),
             Ripple = Color.Parse("#6B5FB0"),
             HaloPath = HaloCrownPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Hina/background_dress.mp4",
+            BackgroundOpacity = 0.25,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#55150E2C"),
         },
         new HudThemeDefinition
         {
@@ -170,6 +197,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#33260F"),
             Ripple = Color.Parse("#B08A3C"),
             HaloPath = HaloCrownPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Hina/background_nightwear.mp4",
+            BackgroundOpacity = 0.3,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#5019110A"),
         },
         new HudThemeDefinition
         {
@@ -189,6 +221,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#161C3E"),
             Ripple = Color.Parse("#3A5A8C"),
             HaloPath = HaloCrescentPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Kisaki/background_kisaki.mp4",
+            BackgroundOpacity = 0.25,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#600C0E28"),
         },
         new HudThemeDefinition
         {
@@ -208,6 +245,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#262640"),
             Ripple = Color.Parse("#7A6A8A"),
             HaloPath = HaloCrescentPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Kisaki/background_swimsuit.mp4",
+            BackgroundOpacity = 0.3,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#5017172B"),
         },
         new HudThemeDefinition
         {
@@ -227,6 +269,11 @@ public static class HudThemeCatalog
             BadgeDark = Color.Parse("#3A2C10"),
             Ripple = Color.Parse("#C08A4A"),
             HaloPath = HaloCrescentPath,
+            HasBackground = true,
+            BackgroundImageUri = "avares://EndfieldChargePlus/Assets/Themes/Kisaki/background_kindergarten.mp4",
+            BackgroundOpacity = 0.3,
+            UseGradientOverlay = true,
+            GradientOverlayColor = Color.Parse("#50221909"),
         },
     };
 

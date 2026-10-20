@@ -62,6 +62,24 @@
             <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
           </Border.RenderTransform>
 
+          <!-- Character Memory/Background Layer - for Hina & Kisaki -->
+          <Ellipse x:Name="BackgroundLayer" 
+                   Width="400" Height="400"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Stretch="UniformToFill"
+                   Opacity="0"
+                   IsHitTestVisible="False"/>
+
+          <!-- Subtle gradient overlay for text readability -->
+          <Border x:Name="ReadabilityOverlay"
+                  Width="560" Height="60"
+                  CornerRadius="30"
+                  Background="{x:Null}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+          
+          <!-- Ripple effect host -->
           <Grid x:Name="RippleHost"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
                 IsHitTestVisible="False">
@@ -139,16 +157,22 @@
                 HorizontalAlignment="Center" VerticalAlignment="Top"
                 Margin="0,-3,0,0" IsHitTestVisible="False" Opacity="0">
             <Grid.RenderTransform><ScaleTransform ScaleX="0.55" ScaleY="0.55"/></Grid.RenderTransform>
+            
+            <!-- Outer glow layer - enhanced for character themes -->
             <Path x:Name="HaloGlowPath"
                   Data="M1 4.2 A14 3.4 0 1 1 29 4.2 A14 3.4 0 1 1 1 4.2 Z"
                   Stroke="{DynamicResource Hud.HaloAccent}"
                   StrokeThickness="4.2" Opacity="0.18"
                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+            <!-- Main halo ring with subtle gradient stroke -->
             <Path x:Name="HaloRing"
                   Data="M1 4.2 A14 3.4 0 1 1 29 4.2 A14 3.4 0 1 1 1 4.2 Z"
                   Stroke="{DynamicResource Hud.HaloAccent}"
                   StrokeThickness="1.7" StrokeLineCap="Round" StrokeJoin="Round"
                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+            <!-- Highlight arc for depth effect -->
             <Path x:Name="HaloHighlight"
                   Data="M1 4.2 A14 3.4 0 1 1 29 4.2 A14 3.4 0 1 1 1 4.2 Z"
                   Stroke="{DynamicResource Hud.HaloGlow}"

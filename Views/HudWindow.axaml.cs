@@ -163,8 +163,103 @@ public partial class HudWindow : Window
     {
         _theme = HudThemeCatalog.Get(themeId);
         HudThemeApplier.Apply(this, _theme);
+        
+        // Apply character background layer
+        ApplyBackgroundLayer(_theme);
+        
         if (_lastRenderData is { } data && UsesThemeAccent(data.AccentColor))
             PaintAccent(_theme.Accent);
+    }
+
+    private void ApplyBackgroundLayer(HudThemeDefinition theme)
+    {
+        var backgroundLayer = FindControl<Ellipse>("BackgroundLayer");
+        if (backgroundLayer is null) return;
+
+        if (theme.HasBackground && !string.IsNullOrWhiteSpace(theme.BackgroundImageUri))
+        {
+            try
+            {
+                var source = AssetLoader.Open(new Uri(theme.BackgroundImageUri));
+                
+                // Create image brush with loaded asset
+                var bitmap = new Avalonia.Media.Imaging.Bitmap(source);
+                var imageBrush = new ImageBrush
+                {
+                    ImageSource = bitmap,
+                    Stretch = Stretch.UniformToFill,
+                    Opacity = theme.BackgroundOpacity
+                };
+                
+                // Scale up background significantly
+                backgroundLayer.Width = Bounds.Width * 3;
+                backgroundLayer.Height = Bounds.Height * 3;
+                backgroundLayer.Stretch = Stretch.UniformToFill;
+                backgroundLayer.HorizontalAlignment = HorizontalAlignment.Center;
+                backgroundLayer.VerticalAlignment = VerticalAlignment.Center;
+                backgroundLayer.RenderTransform = new ScaleTransform(1.5, 1.5);
+                
+                backgroundLayer.Fill = imageBrush;
+                backgroundLayer.IsVisible = true;
+            }
+            catch
+            {
+                // Fallback to gradient overlay if image fails
+                backgroundLayer.IsVisible = false;
+                
+                if (theme.UseGradientOverlay)
+                {
+                    var gradientBrush = new LinearGradientBrush
+                    {
+                        StartPoint = RelativePoint.TopLeft,
+                        EndPoint = RelativePoint.BottomRight,
+                        Opacity = 0.6
+                    };
+                    
+                    var alpha = (byte)(theme.GradientOverlayColor.A * 0.7);
+                    gradientBrush.GradientStops.Add(new GradientStop(
+                        theme.GradientOverlayColor.WithAlpha(alpha), 0));
+                    gradientBrush.GradientStops.Add(new GradientStop(
+                        theme.GradientOverlayColor.WithAlpha((byte)(alpha * 0.6)), 1));
+                    
+                    Pill.Background = gradientBrush;
+                }
+            }
+        }
+        else
+        {
+            // No background - show solid pill
+            backgroundLayer.IsVisible = false;
+            
+            // Restore original gradient fill
+            var pill = FindControl<Border>("Pill");
+            if (pill is not null)
+            {
+                pill.Background = Application.Current!.Resources["Hud.PillFill"] as Brush;
+            }
+        }
+        
+        // Add subtle glow effect for character themes
+        if (theme.HasBackground)
+        {
+            AddCharacterGlowEffect();
+        }
+    }
+
+    private void AddCharacterGlowEffect()
+    {
+        // Enhanced halo glow for Hina & Kisaki themes
+        var haloRing = FindControl<Avalonia.Controls.Shapes.Path>("HaloRing");
+        if (haloRing is { })
+        {
+            // Add outer glow layer
+            haloRing.Effect = new Avalonia.Rendering.Media.Effects.GaussianBlurEffect
+            {
+                Radius = new Thickness(2),
+                KernelType = Avalonia.Rendering.Media.Effects.KernelType.Box,
+                BorderMode = Avalonia.Rendering.Media.Effects.BorderMode.Clamp
+            };
+        }
     }
 
     private static bool UsesThemeAccent(string? accentColor)
